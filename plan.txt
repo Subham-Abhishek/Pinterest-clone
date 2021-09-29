@@ -2,11 +2,15 @@
 name,
 email,
 password,
-about,
+bio,
 profile_photo_url,
 
 //posts 
 user_id from user collection,
+photo_url=urls.regular,
+goodquality_url=urls.full
+tags,
+description=description||alt_description,
 
 //saved posts
 user_id from user collection, 
@@ -26,15 +30,21 @@ we will search for the followed_user_Id===user_idTheysent in the collection and 
 //likes
 user_id from user collection,
 post_id from post collection,
-
+parentCommentId from comment collection,
+parentType should be post or comment,
 
 //commments
 user_id from user collection,
 body ,
 post_id from post collection,
+parentCommentId from comment collection,
+parentType should be post or comment,
+
 
 //activity
 post_id from post collection,
+parentCommentId from comment collection,
+parentType should be post or comment,
 likesCount,
 
 

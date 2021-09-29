@@ -32,7 +32,7 @@ const register=async (req, res)=>{
     }
     catch(e){
         console.log(e,"error")
-        res.status(500).json({status:"failed",message:"something went wrong on the server"})
+        res.status(500).json({status:"failed",message:"something went wrong on the server",error:e})
     }
     
 }
