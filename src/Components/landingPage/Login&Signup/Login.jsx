@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import styles from "./Login.module.css"
 import { textAlign } from '@mui/system';
 import { ImCross } from "react-icons/im";
+import { FaFacebook } from "react-icons/fa";
 
 const style = {
     position: 'absolute',
@@ -49,7 +50,7 @@ function Login({handleClose, open, handleOpen1}) {
                         </button>
                         <h4 style={{ textAlign: "center", lineHeight: "0px", fontSize: "14px" }}>OR</h4>
                         <button className={styles.modalFacebook}>
-                            <p>Login With Facebook</p>
+                            <p>Login with <span><FaFacebook/></span></p>
                         </button>
                         <button className={styles.modalgoogle}>
                             <p>Login With Google</p>

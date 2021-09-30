@@ -1,9 +1,9 @@
 import "./grid.css"
 import React, { useState } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import Login from "./Login/Login";
-import Signup from "./Login/signup";
-
+import Login from "./Login&Signup/Login";
+import Signup from "./Login&Signup/signup";
+import { IoIosArrowDown } from "react-icons/io";
 
 export function Landing() {
     
@@ -145,6 +145,13 @@ export function Landing() {
                     </div>
                 </nav>
             </header>
+
+            
+            <button className="bounce" style={{background:color}}>
+                <IoIosArrowDown/>
+            </button>
+
+
             <div className="heading">
                 <span className="text"> Get your next</span>
                 <div className="wrapper">
