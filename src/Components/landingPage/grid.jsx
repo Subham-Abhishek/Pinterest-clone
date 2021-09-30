@@ -3,14 +3,15 @@ import React, { useState } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Login from "./Login&Signup/Login";
 import Signup from "./Login&Signup/signup";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown,  IoIosArrowUp} from "react-icons/io";
 
 export function Landing() {
     
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
     const [heading, setHeading] = useState("chai time snacks idea")
-    const [color, setColor] = useState("")
+    const [color, setColor] = useState("teal")
+    const [bounce, setBounce] = useState(true)
     
     
     const handleOpen = () => setOpen(true);
@@ -112,7 +113,12 @@ export function Landing() {
     }
 
     window.onscroll = () => {
-        scrollToTop()
+        if (window.scrollY > 60) {
+            setBounce(false)
+        }
+        else {
+            setBounce(true)
+        }
     };
 
     return (
@@ -140,16 +146,20 @@ export function Landing() {
                         </li>
                     </ul>
                     <div className="buttons">
-                        <button className="login" onClick={() => { handleOpen()}}>Log in</button>
+                        <button className="login" onClick={() => { handleOpen() }} >Log in</button>
                         <button className="signup" onClick={() => { handleOpen1()}}>Sign Up</button>
                     </div>
                 </nav>
             </header>
 
-            
-            <button className="bounce" style={{background:color}}>
+            {bounce ? <button className="bounce" style={{ background: color }}  onClick={() => scroll.scrollToBottom()}>
                 <IoIosArrowDown/>
+            </button>:<button className="bounceUp" style={{background:color}} onClick={() =>scroll.scrollToTop()}>
+                <IoIosArrowUp/>
             </button>
+            
+            }
+           
 
 
             <div className="heading">
