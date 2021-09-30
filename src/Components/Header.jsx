@@ -8,6 +8,7 @@ import avt from "../img/avatar.png";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const Header = () => {
+    console.log('header');
   return (
     <div className={classes.header}>
       <div className={classes.logo}>

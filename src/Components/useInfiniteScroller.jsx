@@ -1,41 +1,47 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function useBookSearch(query, pageNumber) {
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-  const [books, setBooks] = useState([])
-  const [hasMore, setHasMore] = useState(false)
+let bool = true;
 
-  useEffect(() => {
-    setBooks([])
-  }, [query])
+export default function useInfiniteScroller(query, pageNumber) {
+    console.log('infinitescrolling');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [lists, setList] = useState([]);
 
   useEffect(() => {
-    setLoading(true)
-    setError(false)
+    setList([]);
+  }, [query]);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
     let cancel;
     axios({
-      method: 'GET',
-      url: 'https://api.unsplash.com/search/photos',
+      method: "GET",
+      url: "https://api.unsplash.com/search/photos",
       params: {
-          page: pageNumber,
-          query: query,
-          client_id: "KnIdKmvxNCmKWEiC6BUzyQtUnIryKv1Cv53bbTc9ahU"
+        page: pageNumber,
+        // per_page: 15,
+        query: query || "random",
+        client_id: "KnIdKmvxNCmKWEiC6BUzyQtUnIryKv1Cv53bbTc9ahU",
       },
-      cancelToken: new axios.CancelToken(c => cancel = c)
-    }).then(({data: {results}}) => {
-      setBooks(prev => {
-        return [...prev, ...results]
-      })
-      setHasMore(results.length > 0)
-      setLoading(false)
-    }).catch(e => {
-      if (axios.isCancel(e)) return
-      setError(true)
+      cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
-    return () => cancel()
-  }, [query, pageNumber])
+      .then(({ data }) => {
+        setList((prev) => {
+          return [...prev, ...data.results];
+        });
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log("error1");
+        if (axios.isCancel(e)) return;
+        console.log("cancelerror1");
+        setError(true);
+      });
+    return () => cancel();
+  }, [query, pageNumber]);
 
-  return { loading, error, books, hasMore }
+  return { loading, error, lists, bool };
 }

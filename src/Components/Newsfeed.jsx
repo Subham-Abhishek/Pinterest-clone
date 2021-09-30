@@ -3,34 +3,69 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import phgif from "../img/phgif.gif";
 import { ImagePlaceholder } from "./ImagePlaceholder";
 import classes from "./newsfeed.module.css";
 
+let bool = true;
+
 export const Newsfeed = () => {
-  const [list, setList] = useState([]);
-  const [query, setQuery] = useState("random");
-  const [load, setLoad] = useState(true);
+  console.log("newsfeed");
+  const [query, setQuery] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [lists, setList] = useState([]);
 
-  const url = `https://api.unsplash.com/search/photos?page=1&per_page=30&query=${query}&client_id=KnIdKmvxNCmKWEiC6BUzyQtUnIryKv1Cv53bbTc9ahU`;
-
-  const getImage = () => {
-    axios.get(url).then(({ data }) => {
-        console.log(data);
-      setList(data.results);
-      setLoad(false);
-    });
-  };
+  useEffect(() => {
+    setList([]);
+  }, [query]);
 
   useEffect(() => {
     setTimeout(() => {
-      getImage();
-    }, 2000);
-  }, [query]);
+      setLoading(true);
+      setError(false);
+      let cancel;
+      axios({
+        method: "GET",
+        url: "https://api.unsplash.com/search/photos",
+        params: {
+          page: pageNumber,
+          per_page: 25,
+          query: query || "random",
+          client_id: "KnIdKmvxNCmKWEiC6BUzyQtUnIryKv1Cv53bbTc9ahU",
+        },
+        cancelToken: new axios.CancelToken((c) => (cancel = c)),
+      })
+        .then(({ data }) => {
+          setList((prev) => {
+            return [...prev, ...data.results];
+          });
+          setLoading(false);
+          bool = true;
+        })
+        .catch((e) => {
+          console.log("error1");
+          if (axios.isCancel(e)) return;
+          console.log("cancelerror1");
+          setError(true);
+        });
+      return () => cancel();
+    }, 500);
+  }, [query, pageNumber]);
+
+  window.addEventListener("scroll", () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight && bool) {
+      console.log("call again");
+      bool = false;
+      setPageNumber((prev) => prev + 1);
+    }
+  });
 
   return (
     <div className={classes.newsfeed}>
-      {load ? (
+      {loading ? (
         <>
           <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
           <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
@@ -43,19 +78,34 @@ export const Newsfeed = () => {
           <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
         </>
       ) : (
-        list.map((e) => {
-          return (
-            <LazyLoadImage
-              effect="blur"
-              src={e.urls.regular}
-              alt={e.alt_description}
-              key={e.id}
-              height={Math.floor(e.height / 10)}
-              width="100%"
-            />
-          );
+        lists.map((list, index) => {
+          if (list.length === index + 1) {
+            return (
+              <LazyLoadImage
+                effect="blur"
+                key={list.id}
+                src={list.urls.regular}
+                alt={list.alt_description}
+                height={Math.floor(list.height / 15)}
+                width="100%"
+              />
+            );
+          } else {
+            return (
+              <LazyLoadImage
+                effect="blur"
+                key={list.id}
+                src={list.urls.regular}
+                alt={list.alt_description}
+                height={Math.floor(list.height / 15)}
+                width="100%"
+              />
+            );
+          }
         })
       )}
+      <div>{loading && "Loading..."}</div>
+      <div>{error && "Error"}</div>
     </div>
   );
 };

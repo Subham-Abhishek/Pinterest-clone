@@ -1,7 +1,7 @@
 .newsfeed {
-  column-count: 4;
+  column-count: 6;
   column-gap: 16px;
-  margin: 40px 20px;
+  margin: 40px ;
 }
 
 .newsfeed .mItem {
@@ -11,21 +11,34 @@
 
 @media (max-width: 1100px) {
   .newsfeed {
+    column-count: 5;
+  }
+}
+
+@media (max-width: 900px) {
+  .newsfeed {
+    column-count: 4;
+  }
+}
+
+@media (max-width: 750px) {
+  .newsfeed {
     column-count: 3;
   }
 }
 
-@media (max-width: 850px) {
-  .newsfeed {
-    column-count: 2;
+@media (max-width: 600px) {
+    .newsfeed {
+      column-count: 2;
+    }
   }
-}
 
-@media (max-width: 550px) {
-  .newsfeed {
-    column-count: 1;
+  @media (max-width: 400px) {
+    .newsfeed {
+      column-count: 1;
+    }
   }
-}
+
 .newsfeed img {
   width: 100%;
   cursor: pointer;
