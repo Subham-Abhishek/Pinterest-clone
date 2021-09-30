@@ -1,11 +1,9 @@
 import "./App.css";
-
+import { Landing } from "./Components/landingPage/grid";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Pinterest Clone</h1>
-      </header>
+      <Landing />
     </div>
   );
 }

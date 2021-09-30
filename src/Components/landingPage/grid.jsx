@@ -1,9 +1,16 @@
 import "./grid.css"
 import React, { useState } from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
+import Login from "./Login/Login";
+import Signup from "./Login/signup";
 
 
 export function Landing() {
+    
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const [modal, setModal] = useState(false)
 
     const [heading, setHeading] = useState("chai time snacks idea")
     const [color, setColor] = useState("")
@@ -130,13 +137,16 @@ export function Landing() {
                         </li>
                     </ul>
                     <div className="buttons">
-                        <button className="login">Log in</button>
+                        <button className="login" onClick={handleOpen}>Log in</button>
+                        {
+                            modal ? <Signup handleClose={handleClose} handleOpen={handleOpen} open={open} setModal={setModal}/> : <Login handleClose={handleClose} handleOpen={handleOpen} open={open} setModal={setModal}/>
+                        }
                         <button className="signup">Sign Up</button>
                     </div>
                 </nav>
             </header>
             <div className="heading">
-                <span className="text"> Get you next</span>
+                <span className="text"> Get your next</span>
                 <div className="wrapper">
                     <div className="offset">
                         <h3 className="text animate-before" style={{color:color, lineHeight:"60px"}}>{heading}</h3>
@@ -170,9 +180,6 @@ export function Landing() {
                     </div>
                     <div className="column">
                         <div className="item">
-                            <img src="https://images.everydayhealth.com/images/go-green-for-better-health-00-1440x810.jpg" alt="imagess"/>
-                        </div>
-                        <div className="item">
                             <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20190503-delish-pineapple-baked-salmon-horizontal-ehg-450-1557771120.jpg?crop=0.670xw:1.00xh;0.173xw,0&resize=480:*" alt="imagess"/>
                         </div>
                         <div className="item">
@@ -183,6 +190,9 @@ export function Landing() {
                         </div>
                         <div className="item">
                             <img src="https://post.healthline.com/wp-content/uploads/2020/09/indian-diet-weight-loss-732x549-thumbnail.jpg" alt="imagess"/>
+                        </div>
+                        <div className="item">
+                            <img src="https://images.everydayhealth.com/images/go-green-for-better-health-00-1440x810.jpg" alt="imagess"/>
                         </div>
                     </div>
                     <div className="column">
