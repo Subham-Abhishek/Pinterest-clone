@@ -30,7 +30,19 @@ export const Newsfeed = () => {
 
   return (
     <div className={classes.newsfeed}>
-      {load ? "Loading" : (
+      {load ? (
+        <>
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+          <ImagePlaceholder height={Math.floor(Math.random() * 600 + 200)} />
+        </>
+      ) : (
         list.map((e) => {
           return (
             <LazyLoadImage
