@@ -15,9 +15,9 @@ export const Newsfeed = () => {
   const url = `https://api.unsplash.com/search/photos?page=1&per_page=30&query=${query}&client_id=KnIdKmvxNCmKWEiC6BUzyQtUnIryKv1Cv53bbTc9ahU`;
 
   const getImage = () => {
-    axios.get(url).then(({ data: { results } }) => {
-      console.log(results);
-      setList(results);
+    axios.get(url).then(({ data }) => {
+        console.log(data);
+      setList(data.results);
       setLoad(false);
     });
   };
