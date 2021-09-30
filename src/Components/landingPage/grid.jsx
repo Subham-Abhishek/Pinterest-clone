@@ -1,6 +1,6 @@
 import "./grid.css"
 import React, { useState } from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 import Login from "./Login/Login";
 import Signup from "./Login/signup";
 
@@ -8,14 +8,15 @@ import Signup from "./Login/signup";
 export function Landing() {
     
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [modal, setModal] = useState(false)
-
+    const [open1, setOpen1] = React.useState(false);
     const [heading, setHeading] = useState("chai time snacks idea")
     const [color, setColor] = useState("")
- 
-   
+    
+    
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const handleOpen1 = () => setOpen1(true);
+    const handleClose1 = () => setOpen1(false);
     const arrayOfHeadings = [ "home decor idea", "outfit idea", "DIY idea","chai time snacks idea"]
     const arrayOfColors = ["rgb(230,0,35)", "green", "purple", "teal"]
 
@@ -116,6 +117,8 @@ export function Landing() {
 
     return (
         <>
+            {handleOpen && <Login handleClose={handleClose} handleOpen={handleOpen} open={open} handleOpen1={handleOpen1}/>}
+            {handleOpen1 && <Signup handleOpen1={handleOpen1} open1={open1} handleClose1={handleClose1} handleOpen={handleOpen}/>}
           
             <header>
                 
@@ -137,11 +140,8 @@ export function Landing() {
                         </li>
                     </ul>
                     <div className="buttons">
-                        <button className="login" onClick={handleOpen}>Log in</button>
-                        {
-                            modal ? <Signup handleClose={handleClose} handleOpen={handleOpen} open={open} setModal={setModal}/> : <Login handleClose={handleClose} handleOpen={handleOpen} open={open} setModal={setModal}/>
-                        }
-                        <button className="signup">Sign Up</button>
+                        <button className="login" onClick={() => { handleOpen()}}>Log in</button>
+                        <button className="signup" onClick={() => { handleOpen1()}}>Sign Up</button>
                     </div>
                 </nav>
             </header>

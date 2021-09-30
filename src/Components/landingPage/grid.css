@@ -43,10 +43,6 @@ header nav ul li a {
   font-weight: 700;
 }
 
-header nav ul li a:hover {
-  text-decoration: none;
-}
-
 header nav .buttons {
   display: flex;
   margin-left: 24px;
@@ -71,10 +67,18 @@ header nav .buttons .login {
   color: #fff;
   background: #e60023;
 }
+header nav .buttons .login:hover {
+  cursor: pointer;
+  background: #b60923;
+}
 
 header nav .buttons .signup {
   margin-left: 16px;
   background: #efefef;
+}
+header nav .buttons .signup:hover {
+  cursor: pointer;
+  background: #b4b1b1;
 }
 
 .heading {
@@ -89,7 +93,6 @@ header nav .buttons .signup {
   align-items: center;
   text-align: center;
 }
-
 .text {
   font-size: 60px;
   font-weight: 600;
@@ -167,19 +170,19 @@ header nav .buttons .signup {
 }
 
 .column:nth-child(3) {
-  margin-top: 320px;
+  margin-top: 260px;
   -webkit-transition-delay: 0.8s;
   transition-delay: 0.8s;
 }
 
 .column:nth-child(4) {
-  margin-top: 480px;
+  margin-top: 420px;
   -webkit-transition-delay: 1.2s;
   transition-delay: 1.2s;
 }
 
 .column:nth-child(5) {
-  margin-top: 320px;
+  margin-top: 260px;
   -webkit-transition-delay: 1.6s;
   transition-delay: 1.6s;
 }

@@ -15,32 +15,33 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 410,
     bgcolor: 'background.paper',
-    p: 4,
-    height: 680,
+    p: 5,
+    height: 700,
     borderRadius: 10,
     display: `flex`,
-    flexDirection:`column`
+    flexDirection: `column`,
+    paddingBottom:0
 };
-function Signup({handleClose, handleOpen, open, setModal}) {
-
+function Signup({handleClose1, handleOpen, open1}) {
     return <>
         <div>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
-                open={open}
-                onClose={handleClose}
+                open={open1}
+                onClose={handleClose1}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
                 timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Fade in={open1}>
                     <Box className={styles.outerBox} sx={style}>
-                        <ImCross style={{ marginLeft: "380px", fontSize: "20px", cursor:"pointer" }} onClick={ handleClose}/>
+                        <ImCross style={{ marginLeft: "380px", fontSize: "20px", cursor:"pointer" }} onClick={ handleClose1}/>
                         <img src="https://i.pinimg.com/originals/1b/76/01/1b7601e035a83c13c208b4ec905ee6d9.png" alt="logo" style={{ width: '50px', height: "50px", marginLeft:"180px", marginTop:"-10px"}} />
                         <h1 className={styles.welcomwHeading}>Welcome To Pinterest</h1>
+                        <p className={styles.signupParaUp}>Find new ideas to try</p>
                         <input type="text" placeholder="Email" className={ styles.inputBox}></input>
                         <input type="text" placeholder="Create a password" className={styles.inputBox}></input>
                         <input type="text" placeholder="Age" className={styles.inputBox}></input>
@@ -57,9 +58,14 @@ function Signup({handleClose, handleOpen, open, setModal}) {
                         <p className={styles.modalbottomP}>
                             By continuing, you agree to Pinterest's <span>Terms of <br/>Service </span>Terms of Service and acknowledge you've read our <span> Privacy<br/>  Policy</span>
                         </p>
-                        <div className={styles.modalhr}></div>
-                        <p className={styles.modalLastP}>Not on Pinterest yet? <span onClick={setModal(false)}>Log in</span></p>
+                        <p className={styles.modalLastP}>Already a member? <span onClick={() => {
+                            handleClose1()
+                            handleOpen()
+                        }}>Log in</span></p>
                         <p className={styles.modalLastP1}>Are you a business? <span>Get started here!</span></p>
+                        <div className={styles.signuplastDiv}>
+                            <h3>Create a free business account</h3>
+                        </div>
                     </Box>
                 </Fade>
             </Modal>

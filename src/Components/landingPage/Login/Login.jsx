@@ -21,7 +21,7 @@ const style = {
     display: `flex`,
     flexDirection:`column`
 };
-function Login({handleClose, handleOpen, open, setModal}) {
+function Login({handleClose, open, handleOpen1}) {
 
     return <>
         <div>
@@ -58,7 +58,10 @@ function Login({handleClose, handleOpen, open, setModal}) {
                             By continuing, you agree to Pinterest's <span>Terms of <br/>Service </span>Terms of Service and acknowledge you've read our <span> Privacy<br/>  Policy</span>
                         </p>
                         <div className={styles.modalhr}></div>
-                        <p className={styles.modalLastP}>Not on Pinterest yet? <span onClick={setModal(false)}>Sign up</span></p>
+                        <p className={styles.modalLastP}>Not on Pinterest yet? <span onClick={() => {
+                            handleClose()
+                            handleOpen1()
+                        }}>Sign up</span></p>
                         <p className={styles.modalLastP1}>Are you a business? <span>Get started here!</span></p>
                     </Box>
                 </Fade>
