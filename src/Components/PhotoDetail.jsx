@@ -99,7 +99,7 @@ export const PhotoDetail = () => {
               >
                 <Panel className="panel" header="Comments" key="1">
                   <div className="comments">
-                      <p>Share feedback, ask a question or give a high five</p>
+                    <p>Share feedback, ask a question or give a high five</p>
                     <CommentList />
                   </div>
                 </Panel>
@@ -252,9 +252,9 @@ const Pin = styled.div`
         font-weight: 600;
         padding: 0px;
         background-color: transparent;
-        p{
-            font-size: 12px;
-            font-weight: 400;
+        p {
+          font-size: 12px;
+          font-weight: 400;
         }
       }
     }
