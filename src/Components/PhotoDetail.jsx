@@ -7,6 +7,9 @@ import CropFreeIcon from "@mui/icons-material/CropFree";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { CommentList } from "./CommentList";
+import { Collapse } from "antd";
+
+const { Panel } = Collapse;
 
 export const PhotoDetail = () => {
   const { id } = useParams();
@@ -88,9 +91,19 @@ export const PhotoDetail = () => {
                 </div>
                 <button className="followbtn">Follow</button>
               </div>
-              <div className="comments">
-                <CommentList />
-              </div>
+              <Collapse
+                className="collapse"
+                bordered={false}
+                defaultActiveKey={["1"]}
+                expandIconPosition="right"
+              >
+                <Panel className="panel" header="Comments" key="1">
+                  <div className="comments">
+                      <p>Share feedback, ask a question or give a high five</p>
+                    <CommentList />
+                  </div>
+                </Panel>
+              </Collapse>
             </div>
           </>
         )}
@@ -102,8 +115,9 @@ export const PhotoDetail = () => {
 const Pin = styled.div`
   .pin {
     width: 65vw;
-    height: 100vh;
-    overflow-y: scroll;
+    height: auto;
+    min-height: 100vh;
+    /* overflow-y: scroll; */
     margin: 20px auto;
     box-shadow: 4px 4px 10px rgba(232, 232, 232, 0.6),
       -4px -4px 10px rgba(232, 232, 232, 0.6);
@@ -133,6 +147,7 @@ const Pin = styled.div`
         padding: 4px;
         border-radius: 50%;
         cursor: pointer;
+        font-size: 23px;
       }
     }
     .pinDetails {
@@ -192,6 +207,7 @@ const Pin = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 20px;
         .userDetails {
           display: flex;
           align-items: center;
@@ -219,8 +235,8 @@ const Pin = styled.div`
           border: none;
           font-weight: 700;
           font-size: 15px;
-          padding: 12px 16px;
-          border-radius: 20px;
+          padding: 11px 19px;
+          border-radius: 25px;
           cursor: pointer;
           transition: 300ms;
           &:hover {
@@ -228,6 +244,17 @@ const Pin = styled.div`
             box-shadow: 0 4px 10px lightgrey;
             transition: all 300ms;
           }
+        }
+      }
+      .collapse,
+      .panel {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 0px;
+        background-color: transparent;
+        p{
+            font-size: 12px;
+            font-weight: 400;
         }
       }
     }
