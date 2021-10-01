@@ -43,7 +43,6 @@ export function Landing() {
         const headings = document.querySelectorAll('.heading .wrapper .text')
 
         function enterScreen(index) {
-        console.log("inside", index, headings[index])
         const grid = grids[index]; 
         const heading = headings[index];
         const gridColumns = grid.querySelectorAll('.column');
@@ -124,7 +123,17 @@ export function Landing() {
     return (
         <>
             {handleOpen && <Login handleClose={handleClose} handleOpen={handleOpen} open={open} handleOpen1={handleOpen1}/>}
-            {handleOpen1 && <Signup handleOpen1={handleOpen1} open1={open1} handleClose1={handleClose1} handleOpen={handleOpen}/>}
+            {handleOpen1 && <Signup handleOpen1={handleOpen1} open1={open1} handleClose1={handleClose1} handleOpen={handleOpen} />}
+            
+            {bounce ? <button className="bounce" style={{ background: color }}  onClick={() => scroll.scrollToBottom()} >
+                <IoIosArrowDown/>
+            </button>:<button className="bounceUp" style={{background:color}} onClick={() =>scroll.scrollToTop()}>
+                <IoIosArrowUp/>
+            </button>
+            
+            }
+           
+
           
             <header>
                 
@@ -151,16 +160,6 @@ export function Landing() {
                     </div>
                 </nav>
             </header>
-
-            {bounce ? <button className="bounce" style={{ background: color }}  onClick={() => scroll.scrollToBottom()}>
-                <IoIosArrowDown/>
-            </button>:<button className="bounceUp" style={{background:color}} onClick={() =>scroll.scrollToTop()}>
-                <IoIosArrowUp/>
-            </button>
-            
-            }
-           
-
 
             <div className="heading">
                 <span className="text"> Get your next</span>

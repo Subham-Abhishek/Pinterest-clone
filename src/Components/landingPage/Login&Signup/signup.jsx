@@ -20,7 +20,7 @@ const style = {
     borderRadius: 10,
     display: `flex`,
     flexDirection: `column`,
-    paddingBottom:0
+    paddingBottom: 0,
 };
 function Signup({handleClose1, handleOpen, open1}) {
     return <>

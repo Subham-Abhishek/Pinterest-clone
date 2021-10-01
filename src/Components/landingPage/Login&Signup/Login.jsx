@@ -3,11 +3,10 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
 import styles from "./Login.module.css"
-import { textAlign } from '@mui/system';
 import { ImCross } from "react-icons/im";
 import { FaFacebook } from "react-icons/fa";
+import GoogleLogin from 'react-google-login';
 
 const style = {
     position: 'absolute',
@@ -23,6 +22,16 @@ const style = {
     flexDirection:`column`
 };
 function Login({handleClose, open, handleOpen1}) {
+
+
+    const responseSuccessGoogle = (response) => {
+        console.log(response)
+        handleClose()
+     }
+    const responseErrorGoogle = (response) => {
+
+     }
+
 
     return <>
         <div>
@@ -52,9 +61,19 @@ function Login({handleClose, open, handleOpen1}) {
                         <button className={styles.modalFacebook}>
                             <p>Login with <span><FaFacebook/></span></p>
                         </button>
-                        <button className={styles.modalgoogle}>
-                            <p>Login With Google</p>
-                        </button>
+                
+
+                        <GoogleLogin
+                            clientId="725845286049-8l8njotq02uhurnb82mntipe7hqmmqf4.apps.googleusercontent.com"
+                            render={renderProps => (
+                            <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With Google</p></button>
+                            )}
+                            buttonText="Login"
+                            onSuccess={responseSuccessGoogle}
+                            onFailure={responseErrorGoogle}
+                            cookiePolicy={'single_host_origin'}
+                        />
+
                         <p className={styles.modalbottomP}>
                             By continuing, you agree to Pinterest's <span>Terms of <br/>Service </span>Terms of Service and acknowledge you've read our <span> Privacy<br/>  Policy</span>
                         </p>
