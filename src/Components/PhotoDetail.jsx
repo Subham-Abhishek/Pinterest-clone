@@ -6,6 +6,7 @@ import { ImagePlaceholder } from "./ImagePlaceholder";
 import CropFreeIcon from "@mui/icons-material/CropFree";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import { CommentList } from "./CommentList";
 
 export const PhotoDetail = () => {
   const { id } = useParams();
@@ -87,6 +88,9 @@ export const PhotoDetail = () => {
                 </div>
                 <button className="followbtn">Follow</button>
               </div>
+              <div className="comments">
+                <CommentList />
+              </div>
             </div>
           </>
         )}
@@ -99,6 +103,7 @@ const Pin = styled.div`
   .pin {
     width: 65vw;
     height: 100vh;
+    overflow-y: scroll;
     margin: 20px auto;
     box-shadow: 4px 4px 10px rgba(232, 232, 232, 0.6),
       -4px -4px 10px rgba(232, 232, 232, 0.6);
@@ -141,6 +146,7 @@ const Pin = styled.div`
           display: flex;
           svg {
             margin-left: 5px;
+            font-size: 45px;
             color: #333;
             cursor: pointer;
             padding: 10px;
@@ -194,11 +200,12 @@ const Pin = styled.div`
             margin: 0;
             font-size: 13px;
           }
-          h4{
-              cursor: pointer;
-              &:hover {
-                text-decoration: underline;
-              }
+          h4 {
+            cursor: pointer;
+            font-weight: 700;
+            &:hover {
+              text-decoration: underline;
+            }
           }
           img {
             width: 30px;
@@ -208,19 +215,19 @@ const Pin = styled.div`
             cursor: pointer;
           }
         }
-        button{
-            border: none;
-            font-weight: 700;
-            font-size: 15px;
-            padding: 12px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: 300ms;
-            &:hover{
-                background-color: #ddd;
-                box-shadow: 0 4px 10px lightgrey;
-                transition: all 300ms;
-            }
+        button {
+          border: none;
+          font-weight: 700;
+          font-size: 15px;
+          padding: 12px 16px;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: 300ms;
+          &:hover {
+            background-color: #ddd;
+            box-shadow: 0 4px 10px lightgrey;
+            transition: all 300ms;
+          }
         }
       }
     }
