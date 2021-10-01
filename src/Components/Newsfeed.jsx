@@ -37,7 +37,7 @@ export const Newsfeed = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      //   fetchImages();
+        // fetchImages();
     }, 1000);
   }, []);
 

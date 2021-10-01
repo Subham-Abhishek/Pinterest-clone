@@ -1,12 +1,10 @@
 import "./App.css";
-import { Header } from "./Components/Header";
-import { Newsfeed } from "./Components/Newsfeed";
+import { Routes } from "./Routes/Routes";
 
 function App() {
   return (
     <>
-     <Header />
-     <Newsfeed />
+     <Routes/>
     </>
   );
 }
