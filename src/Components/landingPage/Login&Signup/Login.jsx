@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import styles from "./Login.module.css"
 import { ImCross } from "react-icons/im";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
 import GoogleLogin from 'react-google-login';
 
 const style = {
@@ -21,12 +21,13 @@ const style = {
     display: `flex`,
     flexDirection:`column`
 };
-function Login({handleClose, open, handleOpen1}) {
+function Login({handleClose, open, handleOpen1, isAuth}) {
 
 
     const responseSuccessGoogle = (response) => {
         console.log(response)
         handleClose()
+        isAuth(true)
      }
     const responseErrorGoogle = (response) => {
 
@@ -66,7 +67,7 @@ function Login({handleClose, open, handleOpen1}) {
                         <GoogleLogin
                             clientId="725845286049-8l8njotq02uhurnb82mntipe7hqmmqf4.apps.googleusercontent.com"
                             render={renderProps => (
-                            <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With Google</p></button>
+                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With Google<span style={{color:"red"}}> <FaGoogle/></span></p></button>
                             )}
                             buttonText="Login"
                             onSuccess={responseSuccessGoogle}

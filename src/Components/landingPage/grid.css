@@ -275,9 +275,9 @@ header nav .buttons .signup:hover {
   height: 45px;
   width: 45px;
   border-radius: 50%;
-  animation: bounce 0.75s infinite;
+  animation: bounce 1.75s infinite;
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   z-index: 1000;
   border: none;
   color: white;
@@ -311,9 +311,9 @@ header nav .buttons .signup:hover {
   height: 45px;
   width: 45px;
   border-radius: 50%;
-  animation: bounce 0.75s infinite;
+  animation: bounce 1.75s infinite;
   position: fixed;
-  top: 0px;
+  top: -50px;
   z-index: 1000;
   border: none;
   color: white;

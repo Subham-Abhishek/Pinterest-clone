@@ -52,6 +52,9 @@
   margin-top: 10px;
   cursor: pointer;
 }
+.modalgoogle span {
+  margin-top: 50px;
+}
 .modalFacebook p {
   font-size: 14px;
   font-weight: bolder;

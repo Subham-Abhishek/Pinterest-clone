@@ -1,9 +1,11 @@
 import "./grid.css"
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import Login from "./Login&Signup/Login";
 import Signup from "./Login&Signup/signup";
-import { IoIosArrowDown,  IoIosArrowUp} from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+
+import { Footer } from "../footer";
 
 export function Landing() {
     
@@ -12,6 +14,7 @@ export function Landing() {
     const [heading, setHeading] = useState("chai time snacks idea")
     const [color, setColor] = useState("teal")
     const [bounce, setBounce] = useState(true)
+    const [auth, isAuth] = useState(false)
     
     
     const handleOpen = () => setOpen(true);
@@ -112,18 +115,62 @@ export function Landing() {
     }
 
     window.onscroll = () => {
-        if (window.scrollY > 60) {
+        if (window.scrollY > 200) {
             setBounce(false)
         }
         else {
             setBounce(true)
         }
     };
+    // window.onscroll = () => {
+    //     if (window.scrollY > 1800) {
+    //         handleOpen()
+    //         setBounce(false)
+    //     }
+    //     else {
+    //         setBounce(true)
+    //     }
+    //     console.log(window.scrollY)
+        
+    // };
+
+
+
+    const [y, setY] = useState(window.scrollY);
+
+    
+    const handleNavigation = useCallback(e => {
+        const window = e.currentTarget;
+        if (y > window.scrollY) {
+            console.log("scrolling up");
+          
+
+        } else if (y < window.scrollY) {
+            console.log("scrolling down");
+            //   scroll.scrollToBottom()
+            //   handleOpen()
+            
+        }
+        setY(window.scrollY);
+        }, [y]);
+    // setTimeout(handleNavigation, 3000)
+
+    React.useEffect(() => {
+    setY(window.scrollY);
+    window.addEventListener("scroll", handleNavigation);
+
+    return () => {
+        window.removeEventListener("scroll", handleNavigation);
+    };
+    }, [handleNavigation]);
+
+
 
     return (
         <>
-            {handleOpen && <Login handleClose={handleClose} handleOpen={handleOpen} open={open} handleOpen1={handleOpen1}/>}
-            {handleOpen1 && <Signup handleOpen1={handleOpen1} open1={open1} handleClose1={handleClose1} handleOpen={handleOpen} />}
+            
+            {handleOpen && <Login handleClose={handleClose} handleOpen={handleOpen} open={open} handleOpen1={handleOpen1} isAuth={ isAuth}/>}
+            {handleOpen1 && <Signup handleOpen1={handleOpen1} open1={open1} handleClose1={handleClose1} handleOpen={handleOpen} isAuth={ isAuth}/>}
             
             {bounce ? <button className="bounce" style={{ background: color }}  onClick={() => scroll.scrollToBottom()} >
                 <IoIosArrowDown/>
@@ -154,10 +201,12 @@ export function Landing() {
                             <a href="#">Blogs</a>
                         </li>
                     </ul>
-                    <div className="buttons">
-                        <button className="login" onClick={() => { handleOpen() }} >Log in</button>
-                        <button className="signup" onClick={() => { handleOpen1()}}>Sign Up</button>
-                    </div>
+                    
+                       <div className="buttons">
+                            <button className="login" onClick={() => { handleOpen() }} >Log in</button>
+                            <button className="signup" onClick={() => { handleOpen1() }}>Sign Up</button>
+                        </div>
+                    
                 </nav>
             </header>
 
@@ -296,7 +345,8 @@ export function Landing() {
                             <img src="https://i1.wp.com/mytastycurry.com/wp-content/uploads/2018/11/Potato-veggie-sooji-snack.jpg?resize=600%2C848" alt="imagess"/>
                         </div>
                     </div>
-                </div>
+            <Footer/>
+            </div>
         </>
     )
 }
