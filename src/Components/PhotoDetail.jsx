@@ -46,7 +46,7 @@ export const PhotoDetail = () => {
             <div className="pinDetails">
               <div className="top">
                 <div className="send">
-                  <a rel="noreferrer" href={pin.urls.raw} target="_blank">
+                  <a rel="noreferrer" href={pin.links.download} target="_blank">
                     <MoreHorizIcon />
                   </a>
                   <div>
@@ -56,23 +56,36 @@ export const PhotoDetail = () => {
                 <div className="sendbtn">Save</div>
               </div>
               <div className="sociallink">
-                  <a href={pin.user.social.portfolio_url} target="_blank" rel="noreferrer">{pin.user.social.portfolio_url.slice(8)}</a>
+                <a
+                  href={pin.user.social.portfolio_url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {pin.user.social.portfolio_url
+                    ? pin.user.social.portfolio_url.slice(8)
+                    : pin.links.html}
+                </a>
               </div>
               <div className="pinHead">
-                  <h1>{`${pin.alt_description.slice(0,50)}`}</h1>
-                  <p>{`#${pin.user.bio}`}</p>
+                <h1>{`${pin.alt_description.slice(0, 50)}`}</h1>
+                <p>{`#${
+                  pin.user.bio
+                    ? pin.user.bio
+                    : "Pinterest is an American image sharing and social media service designed to enable saving and discovery of information on the internet using images"
+                }`}</p>
               </div>
               <div className="user">
-                  <div className="userDetails">
+                <div className="userDetails">
                   <img
-                      src={`https://joeschmoe.io/api/v1/${pin.user.username}`}
-                      alt="User Avatar"
-                    />
-                    <div className="name_followers">
-                        <h4>{pin.user.name}</h4>
-                    </div>
+                    src={`https://joeschmoe.io/api/v1/${pin.user.username}`}
+                    alt="User Avatar"
+                  />
+                  <div className="name_followers">
+                    <h4>{pin.user.name}</h4>
+                    <p>{`${pin.user.total_likes} followers`}</p>
                   </div>
-                  <button className="followbtn">Follow</button>
+                </div>
+                <button className="followbtn">Follow</button>
               </div>
             </div>
           </>
@@ -134,8 +147,8 @@ const Pin = styled.div`
             border-radius: 50%;
             transition: 500ms;
             &:hover {
-                background-color: #e6e6e6e4;
-                transition: 500ms;
+              background-color: #e6e6e6e4;
+              transition: 500ms;
             }
           }
         }
@@ -151,23 +164,64 @@ const Pin = styled.div`
           }
         }
       }
-      .sociallink{
-          margin-top: 10px;
-          margin-left: 10px;
-          a{
-              color: #333;
-              text-decoration: none;
-              font-weight: 600;
-          }
+      .sociallink {
+        margin-top: 10px;
+        margin-left: 10px;
+        a {
+          color: #333;
+          text-decoration: none;
+          font-weight: 600;
+        }
       }
-      .pinHead{
-          h1{
-              text-transform: capitalize;
+      .pinHead {
+        h1 {
+          text-transform: capitalize;
+        }
+        p {
+          text-transform: lowercase;
+          font-size: 15px;
+        }
+      }
+      .user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .userDetails {
+          display: flex;
+          align-items: center;
+          h4,
+          p {
+            margin: 0;
+            font-size: 13px;
           }
-          p{
-              text-transform: lowercase;
-              font-size: 15px;
+          h4{
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
           }
+          img {
+            width: 30px;
+            margin-right: 17px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+        }
+        button{
+            border: none;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 12px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 300ms;
+            &:hover{
+                background-color: #ddd;
+                box-shadow: 0 4px 10px lightgrey;
+                transition: all 300ms;
+            }
+        }
       }
     }
   }
