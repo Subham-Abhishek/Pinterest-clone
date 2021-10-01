@@ -8,6 +8,7 @@ import classes from "./newsfeed.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styled from "styled-components";
 import UploadIcon from "@mui/icons-material/Upload";
+import { Link } from "react-router-dom";
 
 export const Newsfeed = () => {
   const [lists, setList] = useState([]);
@@ -27,7 +28,7 @@ export const Newsfeed = () => {
       },
     }).then(({ data }) => {
       console.log(data);
-      //   setPageNumber(pageNumber + 1);
+        setPageNumber(pageNumber + 1);
       setList((prev) => {
         return [...prev, ...data.results];
       });
@@ -37,7 +38,7 @@ export const Newsfeed = () => {
 
   useEffect(() => {
     setTimeout(() => {
-        // fetchImages();
+      fetchImages();
     }, 1000);
   }, []);
 
@@ -49,8 +50,8 @@ export const Newsfeed = () => {
       <div className={classes.newsfeed}>
         <InfiniteScroll
           dataLength={lists.length}
-          //   next={fetchImages}
-          //   hasMore={lists.length > 0}
+            next={fetchImages}
+            hasMore={lists.length > 0}
         >
           {loading ? (
             <>
@@ -89,13 +90,15 @@ export const Newsfeed = () => {
             lists.map((list) => {
               return (
                 <PinCard key={list.id}>
-                  <LazyLoadImage
-                    effect="blur"
-                    src={list.urls.regular}
-                    alt={list.alt_description}
-                    height={Math.floor(list.height / 15)}
-                    width="100%"
-                  />
+                  <Link to={`/pin/${list.id}`}>
+                    <LazyLoadImage
+                      effect="blur"
+                      src={list.urls.regular}
+                      alt={list.alt_description}
+                      height={Math.floor(list.height / 15)}
+                      width="100%"
+                    />
+                  </Link>
                   <div className="savebtn">Save</div>
                   <div className="bottom">
                     <div className="descript">
@@ -164,7 +167,7 @@ const PinCard = styled.div`
     top: 10px;
     right: 10px;
     color: white;
-    background-color: red;
+    background-color: #E60023;
     padding: 10px 15px;
     font-weight: 600;
     border-radius: 25px;
