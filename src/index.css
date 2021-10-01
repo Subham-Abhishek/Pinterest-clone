@@ -26,13 +26,12 @@ code {
 .load-wraper {
   position: relative;
   height: 100%;
-  width: 100%;
+  /* width: 100px; */
   background-color: rgb(211, 211, 211);
   z-index: 44;
   overflow: hidden;
   border-radius: 5px;
-  margin: 10px;
-  border-radius: 5px;
+  margin-bottom: 15px;
 }
 .activity {
   position: absolute;
