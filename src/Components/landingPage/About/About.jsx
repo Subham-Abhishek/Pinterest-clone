@@ -1,8 +1,18 @@
+import { useState } from "react";
 import styles from "./About.module.css"
+import AboutModal from "./Aboutmodal";
+import { Link } from "react-router-dom";
 
 export function About() {
+    
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
     return (
         <>
+            {
+                handleOpen && <AboutModal open={open} handleClose={handleClose} handleOpen={handleOpen}/>
+            }
             <div className={styles.aboutNavbar}>
                 <div className={styles.aboutNavbardiv1}>
                     <img src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="about pinterest" />
@@ -24,9 +34,12 @@ export function About() {
                     <h1>
                         When it comes to a<br/> great idea, you know<br/> it when you see it
                     </h1>
-                    <button>
-                        Join Pinterest
-                    </button>
+                    <Link to="/avinash" target={"_blank"}>
+                        <button>
+                            Join Pinterest
+                        </button>
+                    </Link>
+                    
                 </div>
                
             </div>
@@ -34,7 +47,7 @@ export function About() {
                 <div className={ styles.aboutmeddilediv1}>
                     <h2 >What's new at Pinterest</h2>
                     <div className={ styles.aboutmeddilediv2}>
-                        <div  className={ styles.aboutmeddilediv3}>
+                        <div className={styles.aboutmeddilediv3} onClick={handleOpen}>
                             <img src="https://about.pinterest.com/sites/about/files/spark_02.jpg" alt="aboutImages" />
                             <p className={styles.aboutmeddilediv3p1}>The Pinterest spark</p>
                             <p className={styles.aboutmeddilediv3p2}>Watch them go from first date to new</p>
