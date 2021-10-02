@@ -1,6 +1,9 @@
 .landingNav li {
   list-style: none;
 }
+.landingNav li a {
+  margin-top: 16px;
+}
 header {
   display: flex;
   -webkit-box-align: center;
@@ -82,7 +85,7 @@ header nav .buttons .signup:hover {
 }
 
 .heading {
-  margin-top: 80px;
+  margin-top: 10px;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -135,12 +138,10 @@ header nav .buttons .signup:hover {
 
 .grid {
   display: grid;
-  -ms-grid-columns: (252px) (7);
-  grid-template-columns: repeat(7, 252px);
+  grid-template-columns: repeat(7, 14.28vw);
   visibility: visible;
   pointer-events: none;
   max-height: 0px;
-  margin-left: 70px;
 }
 
 .column {
@@ -200,7 +201,7 @@ header nav .buttons .signup:hover {
 }
 
 .item {
-  width: 236px;
+  width: 13vw;
   height: 350px;
   background: #e60023;
   border-radius: 10px;
@@ -238,8 +239,8 @@ header nav .buttons .signup:hover {
 }
 
 .landingCarauselButton div {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: rgb(202, 196, 196);
   cursor: pointer;
@@ -278,12 +279,13 @@ header nav .buttons .signup:hover {
   animation: bounce 1.75s infinite;
   position: absolute;
   bottom: 20px;
+  left: 48.5%;
   z-index: 1000;
   border: none;
   color: white;
-  font-size: 35px;
+  font-size: 33px;
   font-weight: bolder;
-  padding-top: 6px;
+  padding-top: 2px;
   cursor: pointer;
 }
 @keyframes bounceUp {
@@ -314,11 +316,12 @@ header nav .buttons .signup:hover {
   animation: bounce 1.75s infinite;
   position: fixed;
   top: -50px;
+  left: 48.5%;
   z-index: 1000;
   border: none;
   color: white;
-  font-size: 35px;
+  font-size: 33px;
   font-weight: bolder;
-  padding-top: 4px;
+  padding-top: 0px;
   cursor: pointer;
 }

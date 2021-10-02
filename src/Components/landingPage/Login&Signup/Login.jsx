@@ -15,10 +15,10 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 610,
+    width: 460,
     bgcolor: 'background.paper',
     p: 4,
-    height: 580,
+    height: 610,
     borderRadius: 10,
     display: `flex`,
     flexDirection: `column`,
@@ -67,9 +67,9 @@ function Login({handleClose, open, handleOpen1, isAuth}) {
                         <input type="text" placeholder="Password" className={styles.inputBox}></input>
                         <p className={styles.modalP}>Forgot Your Password?</p>
                         <button className={styles.modalLogin}>
-                            <p style={{fontSize:"14px", fontWeight:"bold"}}>Log in</p>
+                            <p style={{fontSize:"14px", fontWeight:"bold", marginTop:"7px"}}>Log in</p>
                         </button>
-                        <h4 style={{ textAlign: "center", lineHeight: "0px", fontSize: "14px" }}>OR</h4>
+                        <h4 style={{ textAlign: "center", lineHeight: "0px", fontSize: "14px" , margin:"20px 20px"}}>OR</h4>
                         <button className={styles.modalFacebook}>
                             <p>Login with <span><FaFacebook/></span></p>
                         </button>
