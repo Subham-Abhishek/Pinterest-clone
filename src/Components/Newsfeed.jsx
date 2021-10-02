@@ -91,6 +91,7 @@ export const Newsfeed = () => {
               return (
                 <PinCard key={list.id}>
                   <Link to={`/pin/${list.id}`}>
+                    <div className="pinImg">
                     <LazyLoadImage
                       effect="blur"
                       src={list.urls.regular}
@@ -98,6 +99,7 @@ export const Newsfeed = () => {
                       height={Math.floor(list.height / 15)}
                       width="100%"
                     />
+                    </div>
                   </Link>
                   <div className="savebtn">Save</div>
                   <div className="bottom">
@@ -126,10 +128,10 @@ export const Newsfeed = () => {
 
 const PinCard = styled.div`
   position: relative;
-  img {
+  .pinImg,img {
     width: 100%;
     height: 100%;
-    cursor: pointer;
+    /* cursor: pointer; */
     border-radius: 5px;
     margin-bottom: 10px;
     &:hover {

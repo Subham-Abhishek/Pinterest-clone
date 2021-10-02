@@ -4,11 +4,6 @@
   margin: 30px 20px;
 }
 
-.newsfeed .mItem {
-  margin-bottom: 16px;
-  width: 100%;
-}
-
 @media (max-width: 1150px) {
   .newsfeed {
     column-count: 4;
