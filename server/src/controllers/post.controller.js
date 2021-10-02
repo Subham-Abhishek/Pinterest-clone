@@ -41,7 +41,15 @@ async function attachLikesComments(givenPost){
 }
 router.get("",async (req, res) => {
     try{
-        const posts=await Post.find().populate("user_id").lean().exec()
+         // page number and limit
+        // 2 10  
+        let {pageNumber, limit} = req.query
+        pageNumber=pageNumber ||"1"
+        limit=limit ||"25"
+        pageNumber=Number(pageNumber)
+        limit=Number(limit)
+        const skipElements=(pageNumber-1)*limit
+        const posts=await Post.find().populate("user_id").skip(skipElements).limit(limit).lean().exec()
         //attaching likes and commnts to the post
         for(let i=0; i<posts.length; i++){
             // console.log(posts[i])
