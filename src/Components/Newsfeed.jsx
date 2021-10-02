@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { ImagePlaceholder } from "./ImagePlaceholder";
@@ -9,10 +9,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import styled from "styled-components";
 import UploadIcon from "@mui/icons-material/Upload";
 import { Link } from "react-router-dom";
+import { TokenContext } from "../context/TokenProvider";
 
 export const Newsfeed = () => {
   const [lists, setList] = useState([]);
-  const [query, setQuery] = useState("");
+  const {query, setQuery} = useContext(TokenContext)
   const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
 
@@ -40,7 +41,7 @@ export const Newsfeed = () => {
     setTimeout(() => {
       fetchImages();
     }, 1000);
-  }, []);
+  }, [query]);
 
   console.log(lists);
   console.log(pageNumber);
