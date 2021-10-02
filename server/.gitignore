@@ -4,10 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
+/uploads
+.dbPhotos.json
 
 # testing
 /coverage
-
 # production
 /build
 
