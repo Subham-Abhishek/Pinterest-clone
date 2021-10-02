@@ -6,8 +6,9 @@ const postSchema=mongoose.Schema({
     goodquality_url: {type:String, required:false,default:null},
     description: {type:String, required:false,default:null},
     website: {type:String, required:false,default:null},
-    tags:{type:Array, required:false,default:[]}
-
+    tags:{type:Array, required:false,default:[]},
+    height: {type:Number, required:false,default:null},
+    width: {type:Number, required:false,default:null},
 },{
     versionKey:false,
     timestamp:true

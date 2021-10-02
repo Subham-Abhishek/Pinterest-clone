@@ -57,7 +57,7 @@ async function updatePosts(){
         let tags=[]
         for(let j=0; j<data[i].tags.length; j++){
             for(let key in data[i].tags[j]){
-                if(key=="type"||key=="title"){
+                if(key==="type"||key==="title"){
                     tags.push(data[i].tags[j][key])
                 }
             }
@@ -68,6 +68,5 @@ async function updatePosts(){
       let f=await Post.findByIdAndUpdate(item._id,data[i],{new:true})
       console.log("done")
   })
-
 }
 module.exports={updatePosts}
