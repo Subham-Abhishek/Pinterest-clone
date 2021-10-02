@@ -11,14 +11,15 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 410,
+    width: 480,
     bgcolor: 'background.paper',
     p: 5,
-    height: 700,
+    height: 725,
     borderRadius: 10,
     display: `flex`,
     flexDirection: `column`,
     paddingBottom: 0,
+    
 };
 function Signup({handleClose1, handleOpen, open1}) {
     return <>
@@ -31,8 +32,9 @@ function Signup({handleClose1, handleOpen, open1}) {
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
-                timeout: 500,
+                    timeout: 500,
                 }}
+                style={{overflowY:"scroll", overflowX:"hidden"}}
             >
                 <Fade in={open1}>
                     <Box className={styles.outerBox} sx={style}>
@@ -46,7 +48,7 @@ function Signup({handleClose1, handleOpen, open1}) {
                         <button className={styles.modalLogin}>
                             <p style={{fontSize:"14px", fontWeight:"bold"}}>Continue</p>
                         </button>
-                        <h4 style={{ textAlign: "center", lineHeight: "0px", fontSize: "14px" }}>OR</h4>
+                        <h4 style={{ textAlign: "center", lineHeight: "0px", fontSize: "14px", margin:"20px 20px" }}>OR</h4>
                         <button className={styles.modalFacebook}>
                             <p>Login With Facebook</p>
                         </button>
