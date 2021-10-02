@@ -7,6 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import avt from "../img/avatar.png";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { TokenContext } from "../context/TokenProvider";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const {query, setQuery} = useContext(TokenContext)
@@ -19,7 +20,7 @@ export const Header = () => {
           alt="Logo"
         />
       </div>
-      <div className={classes.home}>Home</div>
+      <Link to='/'><div className={classes.home}>Home</div></Link>
       <div className={classes.today}>Today</div>
       <div className={classes.searchbox}>
         <SearchIcon />
