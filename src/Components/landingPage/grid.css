@@ -236,8 +236,8 @@ header nav .buttons .signup:hover {
 }
 
 .landingCarauselButton div {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: rgb(202, 196, 196);
   cursor: pointer;

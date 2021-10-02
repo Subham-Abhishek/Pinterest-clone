@@ -133,6 +133,7 @@ export function Landing() {
         if (y > window.scrollY) {
             console.log("scrolling up");
             setScrolls(false)
+
         } else if (y < window.scrollY) {
             console.log("scrolling down");
             setScrolls(true)
@@ -216,7 +217,7 @@ export function Landing() {
                 </div>
             </div>
             <div className="landingCarauselButton">
-                <div style={{backgroundColor:color === "rgb(230,0,35)" ? "rgb(230,0,35)": "rgb(202,196,196)"}}></div>
+                <div style={{ backgroundColor: color === "rgb(230,0,35)" ? "rgb(230,0,35)" : "rgb(202,196,196)" }} onClick={() => {}}></div>
                 <div style={{backgroundColor:color === "green" ? "green": "rgb(202,196,196)"}}></div>
                 <div style={{backgroundColor:color === "purple" ? "purple": "rgb(202,196,196)"}}></div>
                 <div style={{backgroundColor:color === "teal" ? "teal": "rgb(202,196,196)"}}></div>

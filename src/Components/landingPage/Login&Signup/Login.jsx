@@ -28,6 +28,7 @@ function Login({handleClose, open, handleOpen1, isAuth}) {
         console.log(response)
         handleClose()
         isAuth(true)
+        
      }
     const responseErrorGoogle = (response) => {
 
