@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import "./grid.css"
 import React, { useCallback, useState } from "react";
 import { animateScroll as scroll } from "react-scroll";

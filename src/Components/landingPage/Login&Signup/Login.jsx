@@ -1,14 +1,14 @@
-import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import styles from "./Login.module.css"
+import * as React from "react";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import styles from "./Login.module.css";
 import { ImCross } from "react-icons/im";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import GoogleLogin from 'react-google-login';
-import axios from "axios"
-import reactDom from 'react-dom';
+import GoogleLogin from "react-google-login";
+import axios from "axios";
+import { TokenContext } from "../../../context/TokenProvider";
 
 const style = {
     position: 'absolute',
@@ -23,30 +23,30 @@ const style = {
     display: `flex`,
     flexDirection: `column`,
 };
-function Login({handleClose, open, handleOpen1, isAuth}) {
+function Login({ handleClose, open, handleOpen1, isAuth }) {
 
+    const {setToken} = React.useContext(TokenContext)
 
-    const responseSuccessGoogle = (response) => {
-        const res = response.profileObj
-        handleClose()
-        isAuth(true)
-        const payload = {
-            username:res.name,
-            name: res.name,
-            email: res.email,
-            password: "12345",
-            profile_photo_url:res.imageUrl
-        }
-        axios.post("http://localhost:8000/gauth", payload)
+  const responseSuccessGoogle = (response) => {
+    const res = response.profileObj;
+    handleClose();
+    isAuth(true);
+    const payload = {
+      username: res.name,
+      name: res.name,
+      email: res.email,
+      password: "12345",
+      profile_photo_url: res.imageUrl,
+    };
+    axios.post("http://localhost:8000/gauth", payload).then(({ data }) => {
+      setToken(data.token);
+    });
+  };
+  const responseErrorGoogle = (response) => {};
 
-     }
-    const responseErrorGoogle = (response) => {
-
-     }
-
-
-    return <>
-        <div>
+  return (
+    <>
+      <div>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -100,6 +100,7 @@ function Login({handleClose, open, handleOpen1, isAuth}) {
             </Modal>
         </div>
     </>
+  );
 }
 
-export default Login
+export default Login;
