@@ -69,6 +69,7 @@ export const CommentList = () => {
                 onClick={handleSubmit}
                 type="primary"
                 className="addcomment"
+                style={{display: value.length ? 'block' : 'none'}}
               >
                 Done
               </Button>
@@ -97,5 +98,11 @@ const Div = styled.div`
     top: 0;
     font-weight: 700;
     color: black;
+    transition: all 300ms;
+    &:hover {
+        background-color: #e60023;
+        box-shadow: 0 4px 10px grey;
+        transition: all 300ms;
+    }
   }
 `;

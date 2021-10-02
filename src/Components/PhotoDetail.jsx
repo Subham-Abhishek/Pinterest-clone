@@ -113,6 +113,7 @@ export const PhotoDetail = () => {
 };
 
 const Pin = styled.div`
+height: 2000vh;
   .pin {
     width: 65vw;
     height: auto;
@@ -157,6 +158,10 @@ const Pin = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: sticky;
+        top: 75px;
+        background-color: #fff;
+        z-index: 5;
         .send {
           display: flex;
           svg {
