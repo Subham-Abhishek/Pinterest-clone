@@ -7,27 +7,38 @@ import styles from "./Login.module.css"
 import { ImCross } from "react-icons/im";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import GoogleLogin from 'react-google-login';
+import axios from "axios"
+import reactDom from 'react-dom';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 410,
+    width: 610,
     bgcolor: 'background.paper',
     p: 4,
     height: 580,
     borderRadius: 10,
     display: `flex`,
-    flexDirection:`column`
+    flexDirection: `column`,
 };
 function Login({handleClose, open, handleOpen1, isAuth}) {
 
 
     const responseSuccessGoogle = (response) => {
-        console.log(response)
+        const res = response.profileObj
         handleClose()
         isAuth(true)
+        const payload = {
+            username:res.name,
+            name: res.name,
+            email: res.email,
+            password: "12345",
+            profile_photo_url:res.imageUrl
+        }
+        axios.post("http://localhost:8000/gauth", payload)
+
      }
     const responseErrorGoogle = (response) => {
 
@@ -67,7 +78,7 @@ function Login({handleClose, open, handleOpen1, isAuth}) {
                         <GoogleLogin
                             clientId="725845286049-8l8njotq02uhurnb82mntipe7hqmmqf4.apps.googleusercontent.com"
                             render={renderProps => (
-                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With Google<span style={{color:"red"}}> <FaGoogle/></span></p></button>
+                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With<span style={{color:"red"}}> <FaGoogle/></span></p></button>
                             )}
                             buttonText="Login"
                             onSuccess={responseSuccessGoogle}
