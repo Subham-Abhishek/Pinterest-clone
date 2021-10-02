@@ -42,7 +42,7 @@ function Login({ handleClose, open, handleOpen1, isAuth }) {
       setToken(data.token);
     });
   };
-  const responseErrorGoogle = (response) => {};
+  const responseErrorGoogle = (err) => {console.log(err)};
 
   return (
     <>
