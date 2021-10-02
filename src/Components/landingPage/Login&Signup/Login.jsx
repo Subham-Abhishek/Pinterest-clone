@@ -19,7 +19,7 @@ const style = {
     height: 580,
     borderRadius: 10,
     display: `flex`,
-    flexDirection:`column`
+    flexDirection: `column`,
 };
 function Login({handleClose, open, handleOpen1, isAuth}) {
 
@@ -67,7 +67,7 @@ function Login({handleClose, open, handleOpen1, isAuth}) {
                         <GoogleLogin
                             clientId="725845286049-8l8njotq02uhurnb82mntipe7hqmmqf4.apps.googleusercontent.com"
                             render={renderProps => (
-                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With Google<span style={{color:"red"}}> <FaGoogle/></span></p></button>
+                                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With<span style={{color:"red"}}> <FaGoogle/></span></p></button>
                             )}
                             buttonText="Login"
                             onSuccess={responseSuccessGoogle}

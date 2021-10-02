@@ -21,6 +21,7 @@ const style = {
     display: `flex`,
     flexDirection: `column`,
     paddingBottom: 0,
+    
 };
 function Signup({handleClose1, handleOpen, open1}) {
     return <>
@@ -33,8 +34,9 @@ function Signup({handleClose1, handleOpen, open1}) {
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
-                timeout: 500,
+                    timeout: 500,
                 }}
+                style={{overflowY:"scroll", overflowX:"hidden"}}
             >
                 <Fade in={open1}>
                     <Box className={styles.outerBox} sx={style}>
