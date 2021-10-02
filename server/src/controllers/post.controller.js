@@ -4,8 +4,15 @@ const Comment = require('../models/comment.model')
 const Like = require('../models/like.model')
 const Post = require('../models/post.model')
 const authenticate= require("../middlewares/authenticate")
+const Follow = require('../models/follow.model')
 // const authorise= require("../middlewares/authorise")
 const router=Router()
+
+async function attachFollowers(_id){
+    let followers=await Follow.find({followed_user_id:_id}).populate("user_id").lean().exec()
+    return followers
+    //here you will get the follwers of a user
+}
 
 router.post("",authenticate,async (req, res) => {
     try{
@@ -39,6 +46,7 @@ router.get("",async (req, res) => {
         for(let i=0; i<posts.length; i++){
             // console.log(posts[i])
             posts[i]=await attachLikesComments(posts[i])
+            posts[i].user_id.followers=await attachFollowers(posts[i].user_id._id)
         }
         res.status(200).json({data:posts})
     }
@@ -52,6 +60,7 @@ router.get("/:id",async (req, res) => {
         let post=await Post.findById(req.params.id).populate("user_id").lean().exec()
         //attaching likes and comments to the post
         post=await attachLikesComments(post)
+        post.user_id.followers=await attachFollowers(post.user_id._id)
         res.status(200).json({data:post})
     }
     catch(err){

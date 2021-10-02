@@ -7,6 +7,7 @@ const router=Router()
 
 async function attachFollowers(_id){
     let followers=await Follow.find({user_id:_id}).populate("followed_user_id").lean().exec()
+        //here you will get who the user followed 
     return followers
 }
 router.post("",async  (req, res) => {

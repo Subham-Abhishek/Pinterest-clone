@@ -11,10 +11,15 @@ const likesController=require("./controllers/like.controller")
 const commentsController=require("./controllers/comment.controller")
 const followsController=require("./controllers/follow.controller")
 const savedpostsController=require("./controllers/savedposts.controller")
+const gauthController=require("./controllers/gauth.controller")
+
 //middlewares
 app.use(cors())
 app.use(express.json())
 
+
+
+app.use("/updates",require("./controllers/updatedb"))
 
 //controllers
 app.use("/register",registerController)
@@ -25,9 +30,10 @@ app.use("/likes",likesController)
 app.use("/comments",commentsController)
 app.use("/follows",followsController)
 app.use("/savedposts",savedpostsController)
-
+app.use("/gauth",gauthController) 
 
 app.listen(8000,async () => {
     await connect()
     console.log("listening on port 8000 pininterst")
 })
+
