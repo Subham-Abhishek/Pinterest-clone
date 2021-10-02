@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import { Comment, Avatar, Form, Button, List } from "antd";
 import moment from "moment";
 import avt from "../img/avatar.png";
