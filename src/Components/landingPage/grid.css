@@ -135,12 +135,10 @@ header nav .buttons .signup:hover {
 
 .grid {
   display: grid;
-  -ms-grid-columns: (252px) (7);
-  grid-template-columns: repeat(7, 252px);
+  grid-template-columns: repeat(7, 14.28vw);
   visibility: visible;
   pointer-events: none;
   max-height: 0px;
-  margin-left: 70px;
 }
 
 .column {
@@ -200,7 +198,7 @@ header nav .buttons .signup:hover {
 }
 
 .item {
-  width: 236px;
+  width: 13vw;
   height: 350px;
   background: #e60023;
   border-radius: 10px;

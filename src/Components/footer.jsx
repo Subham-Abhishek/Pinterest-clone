@@ -1,6 +1,6 @@
 export function Footer() {
     return (
-            <div style={{display:"flex",  width:"100vw", marginLeft:"-70px",height:"40px", textAlign:"center", borderTop:"1px solid grey", marginTop:"40px"}}>
+            <div style={{display:"flex",  width:"100vw", marginLeft:"",height:"40px", textAlign:"center", borderTop:"1px solid grey", marginTop:"40px"}}>
                 <p style={{marginLeft:"34%", fontSize:"12px"}}>Terms of Service</p>
                 <p style={{marginLeft:"1%", fontSize:"12px"}}>Privacy Policy </p>
                 <p style={{marginLeft:"1%", fontSize:"12px"}}>Help</p>

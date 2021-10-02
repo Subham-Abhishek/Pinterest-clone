@@ -15,6 +15,7 @@ export function Landing() {
     const [color, setColor] = useState("teal")
     const [bounce, setBounce] = useState(true)
     const [auth, isAuth] = useState(false)
+    const [scrolls, setScrolls] = useState(false)
     
     
     const handleOpen = () => setOpen(true);
@@ -122,19 +123,6 @@ export function Landing() {
             setBounce(true)
         }
     };
-    // window.onscroll = () => {
-    //     if (window.scrollY > 1800) {
-    //         handleOpen()
-    //         setBounce(false)
-    //     }
-    //     else {
-    //         setBounce(true)
-    //     }
-    //     console.log(window.scrollY)
-        
-    // };
-
-
 
     const [y, setY] = useState(window.scrollY);
 
@@ -143,17 +131,13 @@ export function Landing() {
         const window = e.currentTarget;
         if (y > window.scrollY) {
             console.log("scrolling up");
-          
-
+            setScrolls(false)
         } else if (y < window.scrollY) {
             console.log("scrolling down");
-            //   scroll.scrollToBottom()
-            //   handleOpen()
-            
+            setScrolls(true)
         }
         setY(window.scrollY);
         }, [y]);
-    // setTimeout(handleNavigation, 3000)
 
     React.useEffect(() => {
     setY(window.scrollY);
@@ -163,6 +147,18 @@ export function Landing() {
         window.removeEventListener("scroll", handleNavigation);
     };
     }, [handleNavigation]);
+
+
+    // window.onscroll = () => {
+    //     if (scrolls) {
+    //         console.log("scrolling")
+    //         scroll.scrollToBottom()
+    //     }
+    //     else {
+    //         scroll.scrollToTop()
+    //     }
+    // };
+
 
 
 
