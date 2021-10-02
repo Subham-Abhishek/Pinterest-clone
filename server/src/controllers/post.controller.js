@@ -97,14 +97,15 @@ router.delete("/:id",authenticate,async (req, res) => {
     }
 })
 
-router.post("/tags",async (req, res)=>{
-    //search will be done with the tags  
-    let reqTags=req.body.tags
+router.get("/tags/:tag",async (req, res)=>{
+    //search will be done with the tags
+    //changed => single element array  
+    let reqTags=[req.params.tag];
     let tags=[]
     for(let i=0; i<reqTags.length; i++){
         tags.push({"tags":reqTags[i]})
     }
-    let posts=await Post.find({"$or":tags})
+    let posts=await Post.find({"$or":tags}).populate("user_id").lean().exec()
     res.status(200).json({data:posts})
 })
 
