@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./header.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -6,8 +6,10 @@ import SmsIcon from "@mui/icons-material/Sms";
 import Avatar from "@mui/material/Avatar";
 import avt from "../img/avatar.png";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { TokenContext } from "../context/TokenProvider";
 
 export const Header = () => {
+  const {query, setQuery} = useContext(TokenContext)
     console.log('header');
   return (
     <div className={classes.header}>
@@ -21,7 +23,7 @@ export const Header = () => {
       <div className={classes.today}>Today</div>
       <div className={classes.searchbox}>
         <SearchIcon />
-        <input type="text" name="search" placeholder="Search" />
+        <input value={query} onChange={(e) => setQuery(e.target.value)} type="text" name="search" placeholder="Search" />
       </div>
       <div className={classes.bell}>
         <NotificationsIcon />
