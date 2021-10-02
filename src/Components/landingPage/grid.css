@@ -82,7 +82,7 @@ header nav .buttons .signup:hover {
 }
 
 .heading {
-  margin-top: 80px;
+  margin-top: 10px;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -279,7 +279,7 @@ header nav .buttons .signup:hover {
   z-index: 1000;
   border: none;
   color: white;
-  font-size: 35px;
+  font-size: 33px;
   font-weight: bolder;
   padding-top: 6px;
   cursor: pointer;
@@ -315,7 +315,7 @@ header nav .buttons .signup:hover {
   z-index: 1000;
   border: none;
   color: white;
-  font-size: 35px;
+  font-size: 33px;
   font-weight: bolder;
   padding-top: 4px;
   cursor: pointer;

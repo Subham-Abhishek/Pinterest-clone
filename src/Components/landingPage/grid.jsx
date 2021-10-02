@@ -6,6 +6,7 @@ import Signup from "./Login&Signup/signup";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 import { Footer } from "../footer";
+import { grey } from "@mui/material/colors";
 
 export function Landing() {
     
@@ -215,10 +216,10 @@ export function Landing() {
                 </div>
             </div>
             <div className="landingCarauselButton">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div style={{backgroundColor:color === "rgb(230,0,35)" ? "rgb(230,0,35)": "rgb(202,196,196)"}}></div>
+                <div style={{backgroundColor:color === "green" ? "green": "rgb(202,196,196)"}}></div>
+                <div style={{backgroundColor:color === "purple" ? "purple": "rgb(202,196,196)"}}></div>
+                <div style={{backgroundColor:color === "teal" ? "teal": "rgb(202,196,196)"}}></div>
             </div>
             
             <div className="grid" >
