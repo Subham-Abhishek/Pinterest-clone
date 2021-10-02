@@ -190,13 +190,13 @@ export function Landing() {
                 <nav className="landingNav">
                     <ul>
                         <li>
-                            <a href="#">About</a>
+                            <a>About</a>
                         </li>
                         <li>
-                            <a href="#">Business</a>
+                            <a>Business</a>
                         </li>
                         <li>
-                            <a href="#">Blogs</a>
+                            <a>Blogs</a>
                         </li>
                     </ul>
                     
