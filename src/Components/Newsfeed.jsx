@@ -49,7 +49,10 @@ export const Newsfeed = ({url, url1}) => {
         Authorization: `Bearer ${token}`,
       },
     }).then(() => {
-      setSuccess(true)
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 500);
     })
   }
 
@@ -63,7 +66,8 @@ export const Newsfeed = ({url, url1}) => {
   console.log(pageNumber);
 
   return (
-    <div className={classes.newsparent}>
+    <div style={{display: success ? 'block' : 'none'}} className={classes.newsparent}>
+      {/* <div className={classes.saving}>Post Saved</div> */}
       <div className={classes.newsfeed}>
         <InfiniteScroll
           dataLength={lists.length}
