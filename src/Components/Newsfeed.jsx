@@ -67,7 +67,7 @@ export const Newsfeed = ({url, url1}) => {
 
   return (
     <div style={{display: success ? 'block' : 'none'}} className={classes.newsparent}>
-      {/* <div className={classes.saving}>Post Saved</div> */}
+      <div className={classes.saving}>Post Saved</div>
       <div className={classes.newsfeed}>
         <InfiniteScroll
           dataLength={lists.length}
