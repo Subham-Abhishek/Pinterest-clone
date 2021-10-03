@@ -5,7 +5,7 @@ import { animateScroll as scroll } from "react-scroll";
 import Login from "./Login&Signup/Login";
 import Signup from "./Login&Signup/signup";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-
+import { Link } from "react-router-dom";
 import { Footer } from "../footer";
 import { grey } from "@mui/material/colors";
 
@@ -191,13 +191,13 @@ export function Landing() {
                 <nav className="landingNav">
                     <ul>
                         <li>
-                            <a href="#">About</a>
+                            <Link to="/about" target={"_blank"}><a>About</a></Link>
                         </li>
                         <li>
-                            <a href="#">Business</a>
+                            <a>Business</a>
                         </li>
                         <li>
-                            <a href="#">Blogs</a>
+                            <a>Blogs</a>
                         </li>
                     </ul>
                     

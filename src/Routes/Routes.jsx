@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { FeedsPage } from '../Pages/FeedsPage'
 import { PinDetails } from '../Pages/PinDetails'
 import { Landing } from '../Components/landingPage/grid'
+import { About } from '../Components/landingPage/About/About'
 
 export const Routes = () => {
     return (
@@ -15,6 +16,9 @@ export const Routes = () => {
             </Route>
             <Route path='/avinash'>
                 <Landing/>
+            </Route>
+            <Route path='/about'>
+                <About/>
             </Route>
         </Switch>
     )

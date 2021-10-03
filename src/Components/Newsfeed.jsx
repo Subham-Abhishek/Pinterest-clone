@@ -11,28 +11,25 @@ import UploadIcon from "@mui/icons-material/Upload";
 import { Link } from "react-router-dom";
 import { TokenContext } from "../context/TokenProvider";
 
-export const Newsfeed = () => {
+export const Newsfeed = ({url, url1}) => {
   const [lists, setList] = useState([]);
-  const {query, setQuery} = useContext(TokenContext)
+  const { query } = useContext(TokenContext);
   const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
 
   const fetchImages = () => {
-    axios({
-      method: "GET",
-      url: "https://api.unsplash.com/search/photos",
-      params: {
-        page: pageNumber,
-        per_page: 25,
-        query: query || "random",
-        client_id: "KnIdKmvxNCmKWEiC6BUzyQtUnIryKv1Cv53bbTc9ahU",
-      },
-    }).then(({ data }) => {
+    axios(
+      query
+        ? `${url}?limit=25&pageNumber=${pageNumber}`
+        : `${url1}?limit=25&pageNumber=${pageNumber}`
+    ).then(({ data: { data } }) => {
       console.log(data);
-        setPageNumber(pageNumber + 1);
-      setList((prev) => {
-        return [...prev, ...data.results];
-      });
+      setPageNumber(pageNumber + 1);
+      query
+        ? setList(data)
+        : setList((prev) => {
+            return [...prev, ...data];
+          });
       setLoading(false);
     });
   };
@@ -51,8 +48,8 @@ export const Newsfeed = () => {
       <div className={classes.newsfeed}>
         <InfiniteScroll
           dataLength={lists.length}
-            next={fetchImages}
-            hasMore={lists.length > 0}
+          next={fetchImages}
+          hasMore={lists.length > 0}
         >
           {loading ? (
             <>
@@ -90,22 +87,22 @@ export const Newsfeed = () => {
           ) : (
             lists.map((list) => {
               return (
-                <PinCard key={list.id}>
-                  <Link to={`/pin/${list.id}`}>
+                <PinCard key={list._id}>
+                  <Link to={`/pin/${list._id}`}>
                     <div className="pinImg">
-                    <LazyLoadImage
-                      effect="blur"
-                      src={list.urls.regular}
-                      alt={list.alt_description}
-                      height={Math.floor(list.height / 15)}
-                      width="100%"
-                    />
+                      <LazyLoadImage
+                        effect="blur"
+                        src={list.goodquality_url}
+                        alt={list.description}
+                        height={Math.floor(list.height / 10)}
+                        width="100%"
+                      />
                     </div>
                   </Link>
                   <div className="savebtn">Save</div>
                   <div className="bottom">
                     <div className="descript">
-                      {list.user.name.slice(0, 10)}
+                      {list.user_id.name.slice(0, 10)}
                     </div>
                     <div className="send">
                       <UploadIcon />
@@ -113,7 +110,7 @@ export const Newsfeed = () => {
                   </div>
                   <div className="avatar">
                     <img
-                      src={`https://joeschmoe.io/api/v1/${list.user.username}`}
+                      src={`https://joeschmoe.io/api/v1/${list.user_id.username}`}
                       alt="User Avatar"
                     />
                   </div>
@@ -129,7 +126,8 @@ export const Newsfeed = () => {
 
 const PinCard = styled.div`
   position: relative;
-  .pinImg,img {
+  .pinImg,
+  img {
     width: 100%;
     height: 100%;
     /* cursor: pointer; */
@@ -170,7 +168,7 @@ const PinCard = styled.div`
     top: 10px;
     right: 10px;
     color: white;
-    background-color: #E60023;
+    background-color: #e60023;
     padding: 10px 15px;
     font-weight: 600;
     border-radius: 25px;
