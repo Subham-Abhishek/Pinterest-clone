@@ -114,6 +114,7 @@ router.get("/tags/:tag",async (req, res)=>{
         tags.push({"tags":reqTags[i]})
     }
     let posts=await Post.find({"$or":tags}).populate("user_id").lean().exec()
+    posts=posts.reverse()
     res.status(200).json({data:posts})
 })
 
