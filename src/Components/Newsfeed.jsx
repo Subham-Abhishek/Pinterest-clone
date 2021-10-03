@@ -66,8 +66,8 @@ export const Newsfeed = ({url, url1}) => {
   console.log(pageNumber);
 
   return (
-    <div style={{display: success ? 'block' : 'none'}} className={classes.newsparent}>
-      {/* <div className={classes.saving}>Post Saved</div> */}
+    <div className={classes.newsparent}>
+      <div style={{display: success ? 'block' : 'none'}} className={classes.saving}>Post Saved</div>
       <div className={classes.newsfeed}>
         <InfiniteScroll
           dataLength={lists.length}
