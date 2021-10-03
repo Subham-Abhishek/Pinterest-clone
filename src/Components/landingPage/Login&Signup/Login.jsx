@@ -25,7 +25,7 @@ const style = {
 };
 function Login({ handleClose, open, handleOpen1, isAuth }) {
 
-    const {setToken} = React.useContext(TokenContext)
+    const {setToken, setGUser} = React.useContext(TokenContext)
 
   const responseSuccessGoogle = (response) => {
     const res = response.profileObj;
@@ -39,7 +39,9 @@ function Login({ handleClose, open, handleOpen1, isAuth }) {
       profile_photo_url: res.imageUrl,
     };
     axios.post("http://localhost:8000/gauth", payload).then(({ data }) => {
+        console.log(data);
       setToken(data.token);
+        setGUser(data.user);
     });
   };
   const responseErrorGoogle = (err) => {console.log(err)};

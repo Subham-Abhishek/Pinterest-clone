@@ -1,10 +1,26 @@
 .mainDiv{
-    margin-top: 10px;
+    height: 50px;
+}
+.imageDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .imageDiv>img{
     border-radius: 50%;
     height: 120px;
     width: 120px;
+}
+.parentmail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+.biomail *{
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
 }
 .name{
     font-size: 36px;
@@ -19,13 +35,29 @@
     position: sticky;
     top: 25px;
 }
+.idea h2{
+    font-weight: 600;
+    margin: -5px -20px;
+
+}
 .icons>div img{
     margin: 0 10px;
 }
 .submitBtn{
     border:none;
     background-color: rgb(230,0,35);   
-    
+    padding: 7px 17px;
+    border-radius: 25px;
+    margin-top: 20px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 300ms
+}
+.submitBtn:hover {
+    background-color: rgb(153, 13, 13);
+    transition: 300ms;
+    box-shadow: 4px 4px 10px lightgray;
 }
 
 /* modal css */
@@ -38,6 +70,7 @@
     cursor: pointer;
     position: relative;
     outline: 6px solid rgb(239,239,239);
+    border-radius: 8px;
 }
 
 .caption{
@@ -87,9 +120,17 @@
     min-height: 20px;
 }
 .textArea2[contenteditable]:empty::before{
-    content: "Tell everyone what your pin is about ";
+    content: "Add Tags ";
   color: gray;
 }
-
-
-
+.userDetails{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.svg{
+    text-align: center;
+}
+.svg svg{
+    font-size: 30px
+}

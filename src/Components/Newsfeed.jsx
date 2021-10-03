@@ -10,29 +10,48 @@ import styled from "styled-components";
 import UploadIcon from "@mui/icons-material/Upload";
 import { Link } from "react-router-dom";
 import { TokenContext } from "../context/TokenProvider";
+import { animateScroll as scroll } from "react-scroll";
 
 export const Newsfeed = ({url, url1}) => {
   const [lists, setList] = useState([]);
-  const { query } = useContext(TokenContext);
+  const { query, token } = useContext(TokenContext);
   const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState(false);
 
   const fetchImages = () => {
-    axios(
+    axios.get(
       query
         ? `${url}?limit=25&pageNumber=${pageNumber}`
-        : `${url1}?limit=25&pageNumber=${pageNumber}`
+        : `${url1}?limit=25&pageNumber=${pageNumber}`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
     ).then(({ data: { data } }) => {
-      console.log(data);
+      console.log('data', data);
       setPageNumber(pageNumber + 1);
       query
         ? setList(data)
         : setList((prev) => {
-            return [...prev, ...data];
+            return [...new Set([...prev, ...data])];
           });
       setLoading(false);
-    });
+    })
+    .catch((err) => {
+      console.log('err',err);
+    })
   };
+
+  const savePost = (_id) => {
+    axios.post('http://localhost:8000/savedposts',{post_id: _id},{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(() => {
+      setSuccess(true)
+    })
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,7 +68,7 @@ export const Newsfeed = ({url, url1}) => {
         <InfiniteScroll
           dataLength={lists.length}
           next={fetchImages}
-          hasMore={lists.length > 0}
+          hasMore={lists.length > 5}
         >
           {loading ? (
             <>
@@ -96,10 +115,11 @@ export const Newsfeed = ({url, url1}) => {
                         alt={list.description}
                         height={Math.floor(list.height / 10)}
                         width="100%"
+                        onClick={() =>scroll.scrollToTop()}
                       />
                     </div>
                   </Link>
-                  <div className="savebtn">Save</div>
+                  <div onClick={() => savePost(list._id)}className="savebtn">Save</div>
                   <div className="bottom">
                     <div className="descript">
                       {list.user_id.name.slice(0, 10)}

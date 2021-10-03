@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ImagePlaceholder } from "./ImagePlaceholder";
@@ -9,10 +9,12 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { CommentList } from "./CommentList";
 import { Collapse } from "antd";
 import { Newsfeed } from "./Newsfeed";
+import { TokenContext } from "../context/TokenProvider";
 
 const { Panel } = Collapse;
 
 export const PhotoDetail = () => {
+  const { token, gUser } = useContext(TokenContext)
   const { id } = useParams();
   const [pin, setPin] = useState({});
   const [loading, setLoading] = useState(true);
@@ -30,6 +32,24 @@ export const PhotoDetail = () => {
         console.log("You are lost");
       });
   }, [id]);
+
+  const followUser = (_id) => {
+    console.log("followUser");
+    const payload = {
+      user_id: gUser._id,
+      followed_user_id: _id
+    }
+    axios.post("http://localhost:8000/follows",payload,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      fetchPin()
+      console.log('res',res);
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   useEffect(() => {
     fetchPin();
@@ -85,10 +105,10 @@ export const PhotoDetail = () => {
                   />
                   <div className="name_followers">
                     <h4>{pin.user_id.name}</h4>
-                    <p>{`${pin.user_id.followers.length} followers`}</p>
+                    <p>{`${pin.user_id?.followers?.length} followers`}</p>
                   </div>
                 </div>
-                <button className="followbtn">Follow</button>
+                <button onClick={() => followUser(pin.user_id._id)} className="followbtn">{pin.user_id?.followers?.length ? "Followed" : "Follow"}</button>
               </div>
               <Collapse
                 className="collapse"
