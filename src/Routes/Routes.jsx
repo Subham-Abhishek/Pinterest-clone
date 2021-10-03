@@ -4,6 +4,7 @@ import { FeedsPage } from '../Pages/FeedsPage'
 import { PinDetails } from '../Pages/PinDetails'
 import { Landing } from '../Components/landingPage/grid'
 import { About } from '../Components/landingPage/About/About'
+import { Profile } from '../Components/UserProfile/Profile'
 
 export const Routes = () => {
     return (
@@ -19,6 +20,9 @@ export const Routes = () => {
             </Route>
             <Route path='/about'>
                 <About/>
+            </Route>
+            <Route path="/user">
+                <Profile/>
             </Route>
         </Switch>
     )
