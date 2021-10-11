@@ -25,7 +25,7 @@ const style = {
 };
 function Login({ handleClose, open, handleOpen1, isAuth }) {
 
-    const {setToken} = React.useContext(TokenContext)
+  const {setToken} = React.useContext(TokenContext)
 
   const responseSuccessGoogle = (response) => {
     const res = response.profileObj;

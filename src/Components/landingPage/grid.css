@@ -203,7 +203,7 @@ header nav .buttons .signup:hover {
 .item {
   width: 13vw;
   height: 350px;
-  background: #e60023;
+  background: rgb(165, 162, 162);
   border-radius: 10px;
 }
 .item img {

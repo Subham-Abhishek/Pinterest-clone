@@ -189,6 +189,7 @@ export function Landing() {
                </div>
                 
                 <nav className="landingNav">
+
                     <ul>
                         <li>
                             <Link to="/about" target={"_blank"}><a>About</a></Link>
