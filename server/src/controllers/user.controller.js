@@ -21,7 +21,7 @@ router.post("",async  (req, res) => {
 })
 
 
-router.patch("",authenticate,async (req, res)=>{
+router.patch("/:id",authenticate,async (req, res)=>{
     try {
         const userFromAuth=req.user.user
         const user=await User.findByIdAndUpdate(userFromAuth._id,req.body,{new:true}).select('-password').lean().exec()

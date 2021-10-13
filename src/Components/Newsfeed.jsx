@@ -52,7 +52,7 @@ export const Newsfeed = ({url, url1}) => {
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
-      }, 500);
+      }, 1000);
     })
   }
 
@@ -123,7 +123,7 @@ export const Newsfeed = ({url, url1}) => {
                       />
                     </div>
                   </Link>
-                  <div onClick={() => savePost(list._id)}className="savebtn">Save</div>
+                  <div onClick={() => savePost(list._id)} className="savebtn">Save</div>
                   <div className="bottom">
                     <div className="descript">
                       {list.user_id.name.slice(0, 10)}
@@ -171,8 +171,8 @@ const PinCard = styled.div`
       cursor: default;
       border-radius: 50%;
       box-shadow: 2px 2px 10px lightgrey;
-      z-index: 1000;
-      top: 10px;
+      z-index: 10;
+      bottom: 10px;
       left: 10px;
       display: none;
       cursor: pointer;
@@ -182,14 +182,13 @@ const PinCard = styled.div`
   &:hover {
     .savebtn,
     .descript,
-    .send,
     .avatar img {
       display: block;
     }
   }
   .savebtn {
     position: absolute;
-    top: 10px;
+    bottom: 15px;
     right: 10px;
     color: white;
     background-color: #e60023;
@@ -205,7 +204,7 @@ const PinCard = styled.div`
   .descript {
     position: absolute;
     bottom: 20px;
-    left: 10px;
+    left: 60px;
     background-color: #ffffffd8;
     font-size: 14px;
     font-weight: 700;

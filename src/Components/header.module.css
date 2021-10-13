@@ -156,6 +156,10 @@
     cursor: pointer;
     margin-left: 10px;
 }
-.logout:hover{
+.detailsbtn:hover{
     text-decoration: underline;
+}
+.detailsbtn > a{
+    color: #111;
+
 }

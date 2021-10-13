@@ -34,7 +34,7 @@ export function About() {
                     <h1>
                         When it comes to a<br/> great idea, you know<br/> it when you see it
                     </h1>
-                    <Link to="/avinash" target={"_blank"}>
+                    <Link to="/">
                         <button>
                             Join Pinterest
                         </button>
