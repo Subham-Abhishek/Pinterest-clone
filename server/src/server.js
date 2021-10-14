@@ -32,8 +32,10 @@ app.use("/follows",followsController)
 app.use("/savedposts",savedpostsController)
 app.use("/gauth",gauthController) 
 
-app.listen(8000,async () => {
-    await connect()
-    console.log("listening on port 8000 pininterst")
-})
-
+function start(){
+    app.listen(8000,async () => {
+        await connect()
+        console.log("listening on port 8000 pininterst")
+    })
+}
+module.exports=start
