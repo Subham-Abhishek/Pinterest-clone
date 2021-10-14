@@ -42,6 +42,8 @@ function Login({ handleClose, open, handleOpen1, isAuth }) {
         console.log(data);
       setToken(data.token);
         setGUser(data.user);
+        localStorage.setItem("token", data.token)
+        localStorage.setItem("gUser", JSON.stringify(data.user))
     });
   };
   const responseErrorGoogle = (err) => {console.log(err)};

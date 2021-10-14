@@ -6,6 +6,7 @@ import { Landing } from "../Components/landingPage/grid";
 import { About } from "../Components/landingPage/About/About";
 import { TokenContext } from "../context/TokenProvider";
 import { ProfilePage } from "../Pages/ProfilePage";
+import { EditProfile } from "../Components/EditProfile";
 
 export const Routes = () => {
   const { gUser } = useContext(TokenContext);
@@ -13,6 +14,9 @@ export const Routes = () => {
     <Switch>
       <Route exact path="/">
         {gUser ? <FeedsPage /> : <Landing />}
+      </Route>
+      <Route path="/edit_profile">
+        <EditProfile />
       </Route>
       <Route path="/pin/:id">
         <PinDetails />

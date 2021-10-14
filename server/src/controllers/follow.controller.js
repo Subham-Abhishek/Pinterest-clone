@@ -3,6 +3,7 @@ const authenticate = require('../middlewares/authenticate')
 const router=Router()
 const Follow=require('../models/follow.model')
 router.post("",authenticate,async (req, res)=>{
+    console.log(req.body);
     const userFromAuth=req.user.user
     console.log(userFromAuth,"userfromauth")
     try {

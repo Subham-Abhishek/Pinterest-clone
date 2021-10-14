@@ -14,17 +14,16 @@ import { TokenContext } from "../context/TokenProvider";
 const { Panel } = Collapse;
 
 export const PhotoDetail = () => {
-  const { token, gUser } = useContext(TokenContext)
+  const { token, gUser } = useContext(TokenContext);
   const { id } = useParams();
   const [pin, setPin] = useState({});
   const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState(false);
 
   const fetchPin = useCallback(() => {
     axios
-      .get(
-        `http://localhost:8000/posts/${id}`
-      )
-      .then(({ data : { data } }) => {
+      .get(`http://localhost:8000/posts/${id}`)
+      .then(({ data: { data } }) => {
         setPin({ ...data });
         setLoading(false);
       })
@@ -37,19 +36,41 @@ export const PhotoDetail = () => {
     console.log("followUser");
     const payload = {
       user_id: gUser._id,
-      followed_user_id: _id
-    }
-    axios.post("http://localhost:8000/follows",payload,{
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      fetchPin()
-      console.log('res',res);
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+      followed_user_id: _id,
+    };
+    axios
+      .post("http://localhost:8000/follows", payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        fetchPin();
+        console.log("res", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const savePost = (_id) => {
+    axios
+      .post(
+        "http://localhost:8000/savedposts",
+        { post_id: _id },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 1000);
+      });
+  };
 
   useEffect(() => {
     fetchPin();
@@ -57,6 +78,9 @@ export const PhotoDetail = () => {
 
   return (
     <Pin>
+      <div style={{ display: success ? "block" : "none" }} className="saving">
+        Post Saved
+      </div>
       <div className="pin">
         {loading ? (
           <ImagePlaceholder height={Math.floor(Math.random() * 400 + 150)} />
@@ -69,24 +93,24 @@ export const PhotoDetail = () => {
             <div className="pinDetails">
               <div className="top">
                 <div className="send">
-                  <a rel="noreferrer" href={pin.goodquality_url} target="_blank">
+                  <a
+                    rel="noreferrer"
+                    href={pin.goodquality_url}
+                    target="_blank"
+                  >
                     <MoreHorizIcon />
                   </a>
                   <div>
                     <FileUploadIcon />
                   </div>
                 </div>
-                <div className="sendbtn">Save</div>
+                <div className="sendbtn" onClick={() => savePost(pin._id)}>
+                  Save
+                </div>
               </div>
               <div className="sociallink">
-                <a
-                  href={pin.website}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {pin.website
-                    ? pin.website.slice(8)
-                    : pin.goodquality_url}
+                <a href={pin.website} target="_blank" rel="noreferrer">
+                  {pin.website ? pin.website.slice(8) : pin.goodquality_url}
                 </a>
               </div>
               <div className="pinHead">
@@ -108,7 +132,12 @@ export const PhotoDetail = () => {
                     <p>{`${pin.user_id?.followers?.length} followers`}</p>
                   </div>
                 </div>
-                <button onClick={() => followUser(pin.user_id._id)} className="followbtn">{pin.user_id?.followers?.length ? "Followed" : "Follow"}</button>
+                <button
+                  onClick={() => followUser(pin.user_id._id)}
+                  className="followbtn"
+                >
+                  {pin.user_id?.followers?.length ? "Followed" : "Follow"}
+                </button>
               </div>
               <Collapse
                 className="collapse"
@@ -127,14 +156,34 @@ export const PhotoDetail = () => {
           </>
         )}
       </div>
-      <h1 style={{textAlign: 'center'}}>More Like This</h1>
-        {loading ? "" : <Newsfeed url={`http://localhost:8000/posts/tags/${pin.tags[0]}`} url1={`http://localhost:8000/posts/tags/${pin.tags[1]}`} />}
+      <h1 style={{ textAlign: "center" }}>More Like This</h1>
+      {loading ? (
+        ""
+      ) : (
+        <Newsfeed
+          url={`http://localhost:8000/posts/tags/${pin.tags[0]}`}
+          url1={`http://localhost:8000/posts/tags/${pin.tags[1]}`}
+        />
+      )}
     </Pin>
   );
 };
 
 const Pin = styled.div`
-height: 500vh;
+  height: 500vh;
+  .saving {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(63, 63, 63, 0.816);
+    color: #fff;
+    z-index: 999999;
+    font-size: 30px;
+    padding: 50px 150px;
+    font-weight: 600;
+    border-radius: 80px;
+  }
   .pin {
     width: 65vw;
     height: auto;

@@ -23,6 +23,7 @@ const style = {
 
 export const CreatePin = ({ open1, setOpen1 }) => {
   const { gUser, token } = useContext(TokenContext);
+  const [success, setSuccess] = useState(false);
   const [file, setFile] = useState("");
   const input1Ref = useRef();
   const input2Ref = useRef();
@@ -58,7 +59,10 @@ export const CreatePin = ({ open1, setOpen1 }) => {
           })
           .then((res) => {
             console.log(res.data);
-            alert("posted succesfully");
+            setSuccess(true);
+            setTimeout(() => {
+              setSuccess(false);
+            }, 700);
             setOpen1(!open1);
           })
           .catch((error) => {
@@ -72,6 +76,12 @@ export const CreatePin = ({ open1, setOpen1 }) => {
 
   return (
     <div>
+      <div
+        style={{ display: success ? "block" : "none" }}
+        className={styles.saving}
+      >
+        Posted Successfully
+      </div>
       <Modal
         open={open1}
         onClose={() => setOpen1(!open1)}
