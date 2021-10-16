@@ -7,8 +7,18 @@ const router=Router()
 router.post("",authenticate,async (req, res)=>{
      try {
         const userFromAuth=req.user.user
-        const savedPost =await SavedPost.create({user_id:userFromAuth._id,post_id:req.body.post_id})
-        res.status(201).json({data:savedPost})
+        
+        let savedPost=await SavedPost.findOne({"$and":[{user_id:userFromAuth._id},{post_id:req.body.post_id}]})
+        if(savedPost){
+            savedPost=await SavedPost.findOneAndDelete({"$and":[{user_id:userFromAuth._id},{post_id:req.body.post_id}]})
+            
+            res.status(201).json({data:{save:false}})
+        }
+        else{
+             savedPost =await SavedPost.create({user_id:userFromAuth._id,post_id:req.body.post_id})
+             res.status(201).json({data:{save:true}})
+
+        }
      } catch (error) {
          res.status(500).json({message:"something went wrong", error})
      }
@@ -17,7 +27,15 @@ router.post("",authenticate,async (req, res)=>{
 router.get("",authenticate,async (req, res)=>{
    try {
     const userFromAuth=req.user.user
-    const savedPosts=await SavedPost.find({user_id:userFromAuth._id}).populate("user_id").populate("post_id")
+    let savedPosts=await SavedPost.find({user_id:userFromAuth._id}).populate("user_id").populate({
+        path: "post_id",
+        populate:{
+            path: "user_id"
+        }
+    })
+    savedPosts=savedPosts.map((item)=>{
+        return item.post_id
+    })
     res.status(200).json({data:savedPosts})
    } catch (error) {
        res.status(500).json({message:"something went wrong", error})

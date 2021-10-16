@@ -16,7 +16,7 @@ const login=async (req, res) => {
        const match= user.checkPassword(req.body.password)
            if(match){
             const token=newToken(user)
-            res.status(201).json({token})
+            res.status(201).json({user,token})
            }
            else{
             res.status(500).json({status:"failed",message:"email or password is wrong"})

@@ -41,7 +41,7 @@ async function attachLikesComments(givenPost){
 }
 router.get("",async (req, res) => {
     try{
-        // page number and limit
+         // page number and limit
         // 2 10  
         let {pageNumber, limit} = req.query
         pageNumber=pageNumber ||"1"
@@ -59,8 +59,7 @@ router.get("",async (req, res) => {
         res.status(200).json({data:posts})
     }
     catch(err){
-        console.log(err,"error")
-        res.status(500).json({status:"failed",message:"something went wrong with getting post",err})
+        res.status(500).json({status:"failed",message:"something went wrong with getting post"})
     }
 })
 
@@ -115,6 +114,7 @@ router.get("/tags/:tag",async (req, res)=>{
         tags.push({"tags":reqTags[i]})
     }
     let posts=await Post.find({"$or":tags}).populate("user_id").lean().exec()
+    posts=posts.reverse()
     res.status(200).json({data:posts})
 })
 
