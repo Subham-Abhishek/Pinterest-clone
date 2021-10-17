@@ -22,7 +22,7 @@ export const PhotoDetail = () => {
 
   const fetchPin = useCallback(() => {
     axios
-      .get(`http://localhost:8000/posts/${id}`)
+      .get(`https://pinterest-backend-server.herokuapp.com/posts/${id}`)
       .then(({ data: { data } }) => {
         setPin({ ...data });
         setLoading(false);
@@ -39,7 +39,7 @@ export const PhotoDetail = () => {
       followed_user_id: _id,
     };
     axios
-      .post("http://localhost:8000/follows", payload, {
+      .post("https://pinterest-backend-server.herokuapp.com/follows", payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +56,7 @@ export const PhotoDetail = () => {
   const savePost = (_id) => {
     axios
       .post(
-        "http://localhost:8000/savedposts",
+        "https://pinterest-backend-server.herokuapp.com/savedposts",
         { post_id: _id },
         {
           headers: {
@@ -161,8 +161,8 @@ export const PhotoDetail = () => {
         ""
       ) : (
         <Newsfeed
-          url={`http://localhost:8000/posts/tags/${pin.tags[0]}`}
-          url1={`http://localhost:8000/posts/tags/${pin.tags[1]}`}
+          url={`https://pinterest-backend-server.herokuapp.com/posts/tags/${pin.tags[0]}`}
+          url1={`https://pinterest-backend-server.herokuapp.com/posts/tags/${pin.tags[1]}`}
         />
       )}
     </Pin>

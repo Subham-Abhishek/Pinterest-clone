@@ -35,7 +35,7 @@ export const EditProfile = () => {
              username:name
              }
            try {
-            let data=await axios.patch(`http://localhost:8000/users/${gUser._id}`,payload,{
+            let data=await axios.patch(`https://pinterest-backend-server.herokuapp.com/users/${gUser._id}`,payload,{
                 headers: {
                     Authorization: `Bearer ${token}`,
                   },

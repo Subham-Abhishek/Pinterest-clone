@@ -44,7 +44,7 @@ export const Newsfeed = ({url, url1}) => {
   };
 
   const savePost = (_id) => {
-    axios.post('http://localhost:8000/savedposts',{post_id: _id},{
+    axios.post('https://pinterest-backend-server.herokuapp.com/savedposts',{post_id: _id},{
       headers: {
         Authorization: `Bearer ${token}`,
       },

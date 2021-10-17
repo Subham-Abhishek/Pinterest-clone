@@ -52,7 +52,7 @@ export const CreatePin = ({ open1, setOpen1 }) => {
         };
 
         axios
-          .post("http://localhost:8000/posts", payload, {
+          .post("https://pinterest-backend-server.herokuapp.com/posts", payload, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
