@@ -80,7 +80,7 @@ function Login({ handleClose, open, handleOpen1, isAuth }) {
                 
 
                         <GoogleLogin
-                            clientId="113119869178-og9sbroch174a18pn86n064tv3q26r5f.apps.googleusercontent.com"
+                            clientId="725845286049-8l8njotq02uhurnb82mntipe7hqmmqf4.apps.googleusercontent.com"
                             render={renderProps => (
                                 <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.modalgoogle}> <p>Login With<span style={{color:"red"}}> <FaGoogle/></span></p></button>
                             )}
@@ -91,7 +91,7 @@ function Login({ handleClose, open, handleOpen1, isAuth }) {
                           />
                           
 
-                          
+
 
                         <p className={styles.modalbottomP}>
                             By continuing, you agree to Pinterest's <span>Terms of <br/>Service </span>Terms of Service and acknowledge you've read our <span> Privacy<br/>  Policy</span>
