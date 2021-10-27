@@ -13,7 +13,7 @@ export const UserProfile = () => {
   async function getData() {
     try {
       let { data } = await axios.get(
-        `http://localhost:8000/users/${gUser._id}`
+        `https://pinterest-backend-server.herokuapp.com/users/${gUser._id}`
       );
       setUser(data.data);
     } catch (error) {
@@ -59,7 +59,7 @@ export const UserProfile = () => {
           </button>
         </div>
       </div>
-      <Newsfeed url="http://localhost:8000/savedposts" url1="http://localhost:8000/savedposts" />
+      <Newsfeed url="https://pinterest-backend-server.herokuapp.com/savedposts" url1="https://pinterest-backend-server.herokuapp.com/savedposts" />
       <CreatePin open1={open1} setOpen1={setOpen1} />
       <div className={styles.mainDiv}></div>
     </div>

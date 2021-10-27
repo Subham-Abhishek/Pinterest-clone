@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import "./grid.css"
 import React, { useCallback, useState } from "react";
@@ -34,7 +36,7 @@ export function Landing() {
                 setColor(arrayOfColors[i])
                 i++
                 if (i >= arrayOfHeadings.length) {
-                    i=0
+                    i=0;
                 }
                 
             }, 5730);
@@ -111,11 +113,6 @@ export function Landing() {
         exitDelay: 400 * 7,
         })
     },[])
-            
-
-    function scrollToTop() {
-         scroll.scrollToBottom();
-    }
 
     window.onscroll = () => {
         if (window.scrollY > 200) {
@@ -192,7 +189,7 @@ export function Landing() {
 
                     <ul>
                         <li>
-                            <Link to="/about" target={"_blank"}><a>About</a></Link>
+                            <Link to="/about"><a>About</a></Link>
                         </li>
                         <li>
                             <a>Business</a>

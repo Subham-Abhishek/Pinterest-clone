@@ -12,6 +12,13 @@ export const Header = () => {
   const [show, setShow] = useState(false)
   const {query, setQuery, gUser, setGUser} = useContext(TokenContext)
     console.log('header', gUser);
+
+    const set_removeGUser = () => {
+      localStorage.removeItem('token')
+      localStorage.removeItem('gUser')
+      setGUser();
+    }
+
   return (
     <div className={classes.header}>
       <div className={classes.logo}>
@@ -24,7 +31,7 @@ export const Header = () => {
       <div className={classes.today}>Today</div>
       <div className={classes.searchbox}>
         <SearchIcon />
-        <input value={query} onChange={(e) => setQuery(e.target.value)} type="text" name="search" placeholder="Search" />
+        <input value={query} onChange={(e) => setQuery(e.target.value)} type="search" name="search" placeholder="Search" />
       </div>
       <div className={classes.bell}>
         <NotificationsIcon />
@@ -52,7 +59,8 @@ export const Header = () => {
             </div>
           </div>
           <div className={classes.logout}>
-            <h2 onClick={() => setGUser()}>Log out</h2>
+            <h2 className={classes.detailsbtn}><Link to="/edit_profile">Settings</Link></h2>
+            <h2 className={classes.detailsbtn} onClick={() => set_removeGUser()}><Link to="/">Log out</Link></h2>
           </div>
         </div>
       </div>

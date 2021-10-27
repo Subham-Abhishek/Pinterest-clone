@@ -9,7 +9,10 @@ export const FeedsPage = () => {
   return (
     <div>
       <Header />
-      <Newsfeed url={`http://localhost:8000/posts/tags/${query}`} url1="http://localhost:8000/posts" />
+      <Newsfeed
+        url={`https://pinterest-backend-server.herokuapp.com/posts/tags/${query}`}
+        url1="https://pinterest-backend-server.herokuapp.com/posts"
+      />
     </div>
   );
 };

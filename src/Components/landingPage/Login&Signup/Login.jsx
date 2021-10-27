@@ -38,10 +38,12 @@ function Login({ handleClose, open, handleOpen1, isAuth }) {
       password: "12345",
       profile_photo_url: res.imageUrl,
     };
-    axios.post("http://localhost:8000/gauth", payload).then(({ data }) => {
+    axios.post("https://pinterest-backend-server.herokuapp.com/gauth", payload).then(({ data }) => {
         console.log(data);
       setToken(data.token);
         setGUser(data.user);
+        localStorage.setItem("token", data.token)
+        localStorage.setItem("gUser", JSON.stringify(data.user))
     });
   };
   const responseErrorGoogle = (err) => {console.log(err)};
