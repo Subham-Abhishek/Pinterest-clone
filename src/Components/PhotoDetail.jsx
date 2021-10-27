@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ImagePlaceholder } from "./ImagePlaceholder";
@@ -8,22 +8,23 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { CommentList } from "./CommentList";
 import { Collapse } from "antd";
+import { Newsfeed } from "./Newsfeed";
+import { TokenContext } from "../context/TokenProvider";
 
 const { Panel } = Collapse;
 
 export const PhotoDetail = () => {
+  const { token, gUser } = useContext(TokenContext)
   const { id } = useParams();
   const [pin, setPin] = useState({});
   const [loading, setLoading] = useState(true);
-  console.log("pin", pin);
 
   const fetchPin = useCallback(() => {
     axios
       .get(
-        `https://api.unsplash.com/photos/${id}?client_id=KnIdKmvxNCmKWEiC6BUzyQtUnIryKv1Cv53bbTc9ahU`
+        `http://localhost:8000/posts/${id}`
       )
-      .then(({ data }) => {
-        console.log("sadas", data);
+      .then(({ data : { data } }) => {
         setPin({ ...data });
         setLoading(false);
       })
@@ -31,6 +32,24 @@ export const PhotoDetail = () => {
         console.log("You are lost");
       });
   }, [id]);
+
+  const followUser = (_id) => {
+    console.log("followUser");
+    const payload = {
+      user_id: gUser._id,
+      followed_user_id: _id
+    }
+    axios.post("http://localhost:8000/follows",payload,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      fetchPin()
+      console.log('res',res);
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 
   useEffect(() => {
     fetchPin();
@@ -44,13 +63,13 @@ export const PhotoDetail = () => {
         ) : (
           <>
             <div className="pinPhoto">
-              <img src={pin.urls.regular} alt={pin.alt_description} />
+              <img src={pin.goodquality_url} alt={pin.description} />
               <CropFreeIcon />
             </div>
             <div className="pinDetails">
               <div className="top">
                 <div className="send">
-                  <a rel="noreferrer" href={pin.links.download} target="_blank">
+                  <a rel="noreferrer" href={pin.goodquality_url} target="_blank">
                     <MoreHorizIcon />
                   </a>
                   <div>
@@ -61,35 +80,35 @@ export const PhotoDetail = () => {
               </div>
               <div className="sociallink">
                 <a
-                  href={pin.user.social.portfolio_url}
+                  href={pin.website}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {pin.user.social.portfolio_url
-                    ? pin.user.social.portfolio_url.slice(8)
-                    : pin.links.html}
+                  {pin.website
+                    ? pin.website.slice(8)
+                    : pin.goodquality_url}
                 </a>
               </div>
               <div className="pinHead">
-                <h1>{`${pin.alt_description.slice(0, 50)}`}</h1>
+                <h1>{`${pin.description.slice(0, 50)}`}</h1>
                 <p>{`#${
-                  pin.user.bio
-                    ? pin.user.bio
+                  pin.user_id.bio
+                    ? pin.user_id.bio
                     : "Pinterest is an American image sharing and social media service designed to enable saving and discovery of information on the internet using images"
                 }`}</p>
               </div>
               <div className="user">
                 <div className="userDetails">
                   <img
-                    src={`https://joeschmoe.io/api/v1/${pin.user.username}`}
+                    src={`https://joeschmoe.io/api/v1/${pin.user_id.username}`}
                     alt="User Avatar"
                   />
                   <div className="name_followers">
-                    <h4>{pin.user.name}</h4>
-                    <p>{`${pin.user.total_likes} followers`}</p>
+                    <h4>{pin.user_id.name}</h4>
+                    <p>{`${pin.user_id?.followers?.length} followers`}</p>
                   </div>
                 </div>
-                <button className="followbtn">Follow</button>
+                <button onClick={() => followUser(pin.user_id._id)} className="followbtn">{pin.user_id?.followers?.length ? "Followed" : "Follow"}</button>
               </div>
               <Collapse
                 className="collapse"
@@ -108,12 +127,14 @@ export const PhotoDetail = () => {
           </>
         )}
       </div>
+      <h1 style={{textAlign: 'center'}}>More Like This</h1>
+        {loading ? "" : <Newsfeed url={`http://localhost:8000/posts/tags/${pin.tags[0]}`} url1={`http://localhost:8000/posts/tags/${pin.tags[1]}`} />}
     </Pin>
   );
 };
 
 const Pin = styled.div`
-height: 2000vh;
+height: 500vh;
   .pin {
     width: 65vw;
     height: auto;

@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     height: 74px;
-    z-index: 50;
+    z-index: 55;
     box-shadow: 0 5px 10px rgba(237, 237, 237, 0.35);
     display: flex;
     align-items: center;
@@ -111,3 +111,51 @@
       margin-top: 4px;
       cursor: pointer;
   }
+  .gUser{
+      position: absolute;
+      right: 20px;
+      top: 70px;
+      background-color: #fff;
+      padding: 15px;
+      box-shadow: 4px 4px 10px rgba(220, 219, 219, 0.864),
+      -4px -4px 10px rgba(220, 219, 219, 0.864);
+      border-radius: 10px;
+      cursor: default;
+  }
+  .gUserdetails{
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+  }
+  .gUserdetails > img {
+      border-radius: 50%;
+      width: 70px;
+      margin-right: 10px;
+      cursor: pointer;
+  }
+  .ph3 {
+    display: flex;
+    flex-direction: column;
+  }
+  .ph3 *{
+      margin: 0;
+      padding: 0;
+  }
+  .ph3 h3:hover{
+      text-decoration: underline;
+      cursor: pointer;
+  }
+  .gUserdetails > img h3{
+      margin: 0;
+      color: black;
+  }
+  .gUserdetails > img p{
+    margin: 0;
+}
+.logout{
+    cursor: pointer;
+    margin-left: 10px;
+}
+.logout:hover{
+    text-decoration: underline;
+}

@@ -1,0 +1,136 @@
+.mainDiv{
+    height: 50px;
+}
+.imageDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imageDiv>img{
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+}
+.parentmail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
+}
+.biomail *{
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+}
+.name{
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+}
+.icons{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+    margin: 20px;
+    position: sticky;
+    top: 25px;
+}
+.idea h2{
+    font-weight: 600;
+    margin: -5px -20px;
+
+}
+.icons>div img{
+    margin: 0 10px;
+}
+.submitBtn{
+    border:none;
+    background-color: rgb(230,0,35);   
+    padding: 7px 17px;
+    border-radius: 25px;
+    margin-top: 20px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 300ms
+}
+.submitBtn:hover {
+    background-color: rgb(153, 13, 13);
+    transition: 300ms;
+    box-shadow: 4px 4px 10px lightgray;
+}
+
+/* modal css */
+.fileUpload{
+    background-color: rgb(239,239,239);
+    width: 250px;
+    height: 300px;
+    display: grid;
+    border:3px dotted rgb(223,223,223);
+    cursor: pointer;
+    position: relative;
+    outline: 6px solid rgb(239,239,239);
+    border-radius: 8px;
+}
+
+.caption{
+    margin-top: 45%;
+}
+.caption img{
+    margin-left: 45% ;
+}
+.caption>div:nth-child(2)>p{
+    font-weight: 400;
+    width: 177px;
+    text-align: center;
+    margin: auto;
+    color: rgb(17,17,17);
+    font-size: 14px;
+}
+.caption1{
+    width: 250px;
+    font-size: 12px;
+    color: rgb(108,108,129);
+    text-align: center;
+    margin: auto;
+}
+.textArea{
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    font-family: inherit;
+    
+    width: 300px;
+    overflow: hidden;
+    resize: both;
+    color: #333;
+    font-size: 30px;
+    font-weight: 650;
+    min-height: 30px;
+    line-height: 20px;
+    /* padding: 1px 6px; */
+}
+.textArea[contenteditable]:empty::before{
+    content: "Add your title";
+  color: gray;
+}
+.textArea2{
+    color: #333;
+    font-size: 13px;
+    font-weight: 650;
+    min-height: 20px;
+}
+.textArea2[contenteditable]:empty::before{
+    content: "Add Tags ";
+  color: gray;
+}
+.userDetails{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.svg{
+    text-align: center;
+}
+.svg svg{
+    font-size: 30px
+}

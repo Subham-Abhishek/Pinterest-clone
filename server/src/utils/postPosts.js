@@ -65,7 +65,6 @@ async function updatePosts(){
     data[i].tags=tags
   }
   posts.map(async (item,i)=>{
-      let f=await Post.findByIdAndUpdate(item._id,data[i],{new:true})
       console.log("done")
   })
 }
