@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import classes from "./header.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SmsIcon from "@mui/icons-material/Sms";
+// import NotificationsIcon from "@mui/icons-material/Notifications";
+// import SmsIcon from "@mui/icons-material/Sms";
 import Avatar from "@mui/material/Avatar";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { TokenContext } from "../context/TokenProvider";
@@ -33,13 +33,13 @@ export const Header = () => {
         <SearchIcon />
         <input value={query} onChange={(e) => setQuery(e.target.value)} type="search" name="search" placeholder="Search" />
       </div>
-      <div className={classes.bell}>
+      {/* <div className={classes.bell}>
         <NotificationsIcon />
       </div>
       <div className={classes.inbox}>
         <SmsIcon />
         <div className={classes.redNum}>9+</div>
-      </div>
+      </div> */}
       <div className={classes.avatar}>
         <Link to="/user">
         <Avatar alt="saj" src={gUser.profile_photo_url} sx={{ width: 30, height: 30 }} />
@@ -59,7 +59,6 @@ export const Header = () => {
             </div>
           </div>
           <div className={classes.logout}>
-            <h2 className={classes.detailsbtn}><Link to="/edit_profile">Settings</Link></h2>
             <h2 className={classes.detailsbtn} onClick={() => set_removeGUser()}><Link to="/">Log out</Link></h2>
           </div>
         </div>

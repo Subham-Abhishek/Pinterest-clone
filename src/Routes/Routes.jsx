@@ -15,9 +15,6 @@ export const Routes = () => {
       <Route exact path="/">
         {gUser ? <FeedsPage /> : <Landing />}
       </Route>
-      <Route path="/edit_profile">
-        <EditProfile />
-      </Route>
       <Route path="/pin/:id">
         <PinDetails />
       </Route>

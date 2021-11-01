@@ -56,7 +56,8 @@
       background-color: #eee;
       border-radius: 25px;
       margin-left: 10px;
-      width: 67%;
+      /* width: 67%; */
+      flex: 1;
   }
   .searchbox svg{
       color: #777;
