@@ -148,7 +148,7 @@ export const PhotoDetail = () => {
                 <Panel className="panel" header="Comments" key="1">
                   <div className="comments">
                     <p>Share feedback, ask a question or give a high five</p>
-                    <CommentList />
+                    <CommentList _id = {pin._id} />
                   </div>
                 </Panel>
               </Collapse>

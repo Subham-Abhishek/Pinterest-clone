@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useContext } from "react";
 import "antd/dist/antd.css";
 import { Comment, Avatar, Form, Button, List } from "antd";
-import moment from "moment";
-import avt from "../img/avatar.png";
+// import moment from "moment";
+// import avt from "../img/avatar.png";
 import styled from "styled-components";
+import axios from "axios";
+import { TokenContext } from "../context/TokenProvider";
+import { useEffect } from "react";
 
-export const CommentList = () => {
+export const CommentList = ({ _id }) => {
+  const { token, gUser } = useContext(TokenContext);
   const [comments, setComments] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -19,37 +24,70 @@ export const CommentList = () => {
     />
   );
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!value) {
       return;
     }
+
+    const payload = {
+      parentType: "post",
+      body: value,
+      post_id: _id,
+    };
+
+    await axios.post("https://pinterest-backend-server.herokuapp.com/comments", payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     setSubmitting(true);
 
     setTimeout(() => {
       setSubmitting(false);
       setValue("");
-      setComments([
-        ...comments,
-        {
-          author: "Subham Abhishek",
-          avatar: avt,
-          content: <p>{value}</p>,
-          datetime: moment().fromNow(),
-        },
-      ]);
-    }, 1000);
+      // setComments([
+      //   ...comments,
+      //   {
+      //     author: "Subham Abhishek",
+      //     avatar: avt,
+      //     content: <p>{value}</p>,
+      //     datetime: moment().fromNow(),
+      //   },
+      // ]);
+      getData();
+    }, 1500);
+  };
+
+  const getData = async () => {
+    let {data} = await axios.get(
+      `https://pinterest-backend-server.herokuapp.com/comments?post_id=${_id}`
+    );
+    data = data.map(item => {
+      const payload = {
+        author: item?.user_id?.name,
+        avatar: item?.user_id?.profile_photo_url,
+        content: <p>{item.body}</p>
+      }
+      return payload;
+    });
+
+    setComments(data);
   };
 
   const handleChange = (e) => {
     setValue(e.target.value);
   };
 
+  useEffect(() => {
+    getData();
+  },[])
+
   return (
     <>
       {comments.length > 0 && <CommentLists comments={comments} />}
       <Comment
-        avatar={<Avatar src={avt} alt="Subham Abhishek" />}
+        avatar={<Avatar src={gUser?.profile_photo_url} alt={gUser?.name} />}
         content={
           <Div>
             <Form.Item>
@@ -69,7 +107,7 @@ export const CommentList = () => {
                 onClick={handleSubmit}
                 type="primary"
                 className="addcomment"
-                style={{display: value.length ? 'block' : 'none'}}
+                style={{ display: value.length ? "block" : "none" }}
               >
                 Done
               </Button>
@@ -100,9 +138,9 @@ const Div = styled.div`
     color: black;
     transition: all 300ms;
     &:hover {
-        background-color: #e60023;
-        box-shadow: 0 4px 10px grey;
-        transition: all 300ms;
+      background-color: #e60023;
+      box-shadow: 0 4px 10px grey;
+      transition: all 300ms;
     }
   }
 `;
