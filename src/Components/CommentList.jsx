@@ -35,11 +35,15 @@ export const CommentList = ({ _id }) => {
       post_id: _id,
     };
 
-    await axios.post("https://pinterest-backend-server.herokuapp.com/comments", payload, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    await axios.post(
+      "https://pinterest-backend-server.herokuapp.com/comments",
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     setSubmitting(true);
 
@@ -60,15 +64,16 @@ export const CommentList = ({ _id }) => {
   };
 
   const getData = async () => {
-    let {data} = await axios.get(
+    let { data } = await axios.get(
       `https://pinterest-backend-server.herokuapp.com/comments?post_id=${_id}`
     );
-    data = data.map(item => {
+    console.log(data);
+    data = data?.data?.map((item) => {
       const payload = {
         author: item?.user_id?.name,
         avatar: item?.user_id?.profile_photo_url,
-        content: <p>{item.body}</p>
-      }
+        content: <p>{item.body}</p>,
+      };
       return payload;
     });
 
@@ -81,7 +86,7 @@ export const CommentList = ({ _id }) => {
 
   useEffect(() => {
     getData();
-  },[])
+  }, []);
 
   return (
     <>
