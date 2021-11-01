@@ -7,7 +7,7 @@ export const TokenProvider = ({ children }) => {
 
   const [token, setToken] = useState("");
   const [query, setQuery] = useState("");
-  const [gUser, setGUser] = useState();
+  const [gUser, setGUser] = useState(JSON.parse(localStorage.getItem("gUser")) || null);
   console.log(`token: ${token}, ----query----${query}, -----gUser-----${gUser}`);
 
   return (

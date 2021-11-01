@@ -308,7 +308,7 @@ export function Landing() {
                             <img src="https://globalspaonline.com/wp-content/uploads/2021/07/10-of-The-Healthiest-Indian-Foods-To-Say-Yes-To-Image-1.jpg" alt="imagess"/>
                         </div>
                     </div>
-                    <div className="column">
+                    {/* <div className="column">
                         <div className="item">
                             <img src="https://topteenrecipes.com/wp-content/uploads/2021/05/Webp.net-compress-image-13-735x735.jpg" alt="imagess"/>
                         </div>
@@ -341,7 +341,7 @@ export function Landing() {
                         <div className="item">
                             <img src="https://i1.wp.com/mytastycurry.com/wp-content/uploads/2018/11/Potato-veggie-sooji-snack.jpg?resize=600%2C848" alt="imagess"/>
                         </div>
-                    </div>
+                    </div> */}
             <Footer/>
             </div>
         </>
