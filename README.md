@@ -1,10 +1,10 @@
-# Pinterest
+# PinShow
 
 ### Demo Link : <a>https://pinshow.netlify.app/</a> 
 
 
 #### About the project:
-Pinterest is an image sharing and social media service designed to enable saving and discovery of information on the internet using images and, on a smaller scale, animated GIFs and videos, in the form of pin-boards.
+PinShow is an image sharing and social media service designed to enable saving and discovery of information on the internet using images and, on a smaller scale, animated GIFs and videos, in the form of pin-boards.
 
 ## Contributors
 
